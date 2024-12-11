@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leccion 3 - Modelo Entidad-Relacion | aprendersql.com</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/lessons.css">
+    <link rel="stylesheet" href="/assets/css/exercises.css">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Título dinámico -->
+
+<!-- Meta Description -->
+<meta name="description" content="Aprende cómo los modelos entidad-relación ayudan a estructurar bases de datos de manera eficiente.">
+
+<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+<link rel="canonical" href="https://aprendersql.com/curso-sql/modelo-entidad-relacion">
+<link rel="image_src" href="/assets/img/aprendersql.png">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Leccion 3 - Modelo Entidad-Relacion">
+<meta property="og:description" content="Aprende cómo los modelos entidad-relación ayudan a estructurar bases de datos de manera eficiente.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aprendersql.com/curso-sql/modelo-entidad-relacion">
+<meta property="og:image" content="https://aprendersql.com/assets/img/aprendersql.png">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leccion 3 - Modelo Entidad-Relacion">
+<meta name="twitter:description" content="Aprende cómo los modelos entidad-relación ayudan a estructurar bases de datos de manera eficiente.">
+<meta name="twitter:image" content="https://aprendersql.com/assets/img/aprendersql.png">
+
+
+  
+
+  </head>
+<body>
+    <header class="header">
+    <div class="logo">
+        <a href="/" class="logo-container">
+            <img src="/assets/img/logoazul.png" alt="Logo" class="logo-icon">
+            <h1 class="logo-text">AprenderSQL<span>.com</span></h1>
+        </a>
+    </div>
+    <p class="description">
+        <strong><span class="learn-consulta-example">Aprende SQL</span>:</strong> aprendersql.com es un curso guiado gratuito de SQL. Este <strong>curso de sql</strong> para principiantes esta pensado para que aprendas este lenguaje de consulta de bases de datos <strong>desde cero</strong> paso a paso y con <strong>ejemplos</strong>. Tambien puedes consultar nuestro <strong>manual de referencia</strong>.
+    </p>
+   
+    
+    <div class="social-icons">
+        <!--<a href="#" class="icon">Github</a>-->
+        <a href="/curso-sql/" class="icon">Curso SQL</a>
+        <a href="/referencias-sql/" class="icon">Referencias</a>
+        <a href="/comunidad" class="icon">Comunidad</a>
+        <!--<a href="#" class="icon">Articulos</a>-->
+    </div>
+       
+</header>
+
+<!--
+<section class="promo">
+    <span class="new-badge">New!</span>
+    <p>Ebook <strong>"Curso SQL Avanzado con Ejercicios"</strong> ya disponible! 😊 <a href="#" class="btn">Consiguelo ahora! →</a></p>
+</section>
+-->
+
+    <main>
+        <script>
+    const exercises = [
+
+];
+</script>
+<div class="exercise-container">
+    <a href="/curso-sql/">← Lecciones</a>
+    <section class="lesson">
+        <h1>Leccion 3 - Modelo Entidad-Relacion</h1>
+        
+
+<p>Tiempo estimado de lectura: 3 minutos</p>
+        <div class="lesson-content">
+            <h2 id="que-es-un-modelo-entidad-relacion">Que es un modelo entidad-relacion?</h2>
+
+<p>En esta leccion vamos a explicar con un ejemplo el modelo Entidad-Relacion (ER), que no es otra cosa que utilizamos los profesionales de datos para representar el diseño, o modelo, de una base de datos de manera que podemos entender facilmente los diferentes elementos que componen una base de datos, como sus entidades, sus columnas (atributos) y la manera en que se relacionan las diferentes tablas que la componen. Tambien es muy util a la hora de diseñar una base de datos antes de su implementacion.</p>
+
+<h2 id="ejemplo-modelo-entidad-relacion">Ejemplo modelo entidad-relacion</h2>
+
+<p>En un modelo de entidad-relacion las tablas no muestran sus filas, de manera que transponemos las columnas para verlas en vertical de manera apilada. Por ejemplo, una base de datos sobre ventas puede tener 3 tablas (normalmente una base de datos de ventas tiene mas tablas, pero para el ejemplo nos sirve), esto es, una primera tabla de Ordenes, una segunda tabla de Clientes y una tercera tabla de Productos.</p>
+
+<p>La tabla Ordenes tiene los siguientes campos (recuerda que en un modelo entidad-relacion las columnas de una tabla estan traspuestas a como las veriamos en su forma original con filas y columnas):</p>
+
+<ul>
+  <li>IdOrden</li>
+  <li>IdCliente</li>
+  <li>FechaOrden</li>
+  <li>IdProducto</li>
+  <li>Cantidad</li>
+  <li>Importe</li>
+</ul>
+
+<p>Bien, como puedes ver no nos hace falta pintar la tabla con filas y columnas para entender cual es la estructura de la tabla Ordenes, si no que hemos simplemente listado sus campos.</p>
+
+<p>La segunda tabla Clientes, tendria los siguientes campos:</p>
+
+<ul>
+  <li>IdCliente</li>
+  <li>Nombre</li>
+  <li>Apellidos</li>
+  <li>Email</li>
+</ul>
+
+<p>Y por ultimo la tabla Productos, tendria los siguientes campos:</p>
+
+<ul>
+  <li>IdProducto</li>
+  <li>Categoria</li>
+  <li>PrecioUnidad</li>
+</ul>
+
+<p>Debemos hablar un poco sobre la logica de negocio de esta base de datos de 3 tablas. La tabla Ordenes registra los datos de las ventas de manera que un cliente puede hacer un pedido de uno o mas productos en una fecha determinada. La tabla Productos registra la informacion de los diferentes productos que se venden. Y por ultimo la tabla Clientes contendra asi mismo la informacion de los diferentes Clientes del negocio.</p>
+
+<p>Ahora, si nos fijamos bien, te daras cuenta de que hay nombres de campos que se repiten entre las tablas, por ejemplo IdProducto en la tabla Productos e IdProducto en la tabla Ordenes. Te preguntaras, por que es esto asi, bien, esta es la forma mas facil de identificar como relacionar dos tablas, cuando los nombres de los campos entre dos tablas se repiten esto te da pistas para saber como se relacionan, en este las tablas Ordenes y Producto se relacionan por el campo IdProducto. La tabla Productos contiene un registro unico por cada producto, y la tabla Ordenes contiene la informacion de las ventas en las que los clientes pueden hacer una o mas compras de uno o varios productos en una o varias fechas.</p>
+
+<p>Por lo tanto las relaciones entre las tablas se dan como sigue. La relacion entre la tabla Cliente y Ordenes sera uno a muchos (1:n), y la relacion entre las tablas Producto y Ordenes sera tambien uno a muchos (1:n). Las tablas Productos y Clientes no se relacionan entre si directamente si no a traves de la tabla Ordenes.</p>
+
+<p>Recuerda las tablas pueden tener una clave primaria (PK), y una o mas claves foraneas (FK). Siguiendo el ejemplo de nuestra base de datos de ventas, las tabla Productos tendra una clave primaria que se corresponde con el campo IdProducto, que sera el identificador unico del producto en nuestro sistema. Asi mismo la tabla Clientes tendra una clave primaria dada por el campo IdCliente para identificar de manera univoca cada cliente en nuestro sistema. Y que pasa con la tablas Ordenes? Pues que esta contendra las foreign keys o claves foraneas que apuntaran a las tablas Productos y Clientes dadas por IdProducto e IdCliente respectivamente.</p>
+
+<p>Si ilustramos todo lo que hemos comentado anteriormente, nuestro modelo entidad-relacion de nuestra base de datos Ventas se podria representar de la siguiente manera.</p>
+
+<p><img src="/assets/img/curso/ejemplo-modelo-entidad-relacion.jpg" alt="ejemplo modelo entidad relacion" title="Ejemplo modelo entidad relacion" /></p>
+
+<h2 id="ventajas-del-modelo-entidad-relacion">Ventajas del modelo Entidad-Relacion</h2>
+
+<ul>
+  <li>Organizacion y facilidad al visualizar el diseño del modelo datos. De esta manera permite comprender como estan estructuradas las entidades y como se relacionan entre si.</li>
+  <li>Facilita el poder evitar redundancia en los datos.</li>
+  <li>Facilita la implementacion del modelo datos.</li>
+</ul>
+
+        </div>
+    
+    </section>
+
+    
+  <div class="next-post">
+    <p>Siguiente lección: <a href="/curso-sql/tipos-de-datos-sql">Leccion 4 - Tipos de datos en SQL</a></p>
+  </div>
+
+
+
+                <!--<p>No hay ejercicios disponibles para esta lección.</p>-->
+            </section>
+        
+
+</div>
+
+<!---
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.2.1/dist/sql-wasm-debug.js" crossorigin="anonymous"></script>
+<script src="/assets/js/sql.js"></script>   
+<script src="/assets/js/editor.js"></script>   
+-->
+
+    </main>
+          <!--<footer class="footer">-->
+    <footer class="">
+        <!--
+    <div class="footer-container">
+      <div class="footer-about">
+        <h2>AprenderSQL</h2>
+        <p>Tu recurso en español para aprender SQL desde cero. Domina el lenguaje de bases de datos.</p>
+      </div>
+  
+      <div class="footer-links">
+        <h3>Enlaces Útiles</h3>
+        <ul>
+          <li><a href="/curso-sql">Curso SQL</a></li>
+          <li><a href="/referencia-sql">Manual de Referencia</a></li>
+          <li><a href="/comunidad">Comunidad</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-social">
+        <h3>Síguenos</h3>
+        <ul>
+          <li><a href="https://linkedin.com/company/aprendersql" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+-->      
+    <div class="footer-bottom">
+      <p>© 2024 AprenderSQL. Todos los derechos reservados. | <a href="/privacidad">Política de Privacidad</a></p>
+    </div>
+  </footer>
+    
+</body>
+</html>

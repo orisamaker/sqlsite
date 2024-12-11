@@ -1,0 +1,568 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.header {
+    text-align: center;
+    padding: 20px;
+    background: #f2f2f2;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    gap: 10px; /* Espaciado entre el logo y el texto */
+}
+
+
+.logo-text span {
+    color: #999;
+}
+
+.learn-consulta-example {
+    color: #38b6ff;
+}
+
+.learn-curso-example {
+    color: #8c52ff;
+}
+
+.learn-azul-example {
+    color: #007bff;
+}
+
+
+.logo-icon {
+    width: 70px;
+    height: 70px;
+}
+
+.logo-icon {
+    width: 50px; /* Ajusta el tamaño del logo */
+    height: auto; /* Mantén la proporción del logo */
+}
+
+.tagline {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.description {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.social-icons {
+    margin-top: 15px;
+}
+
+.icon {
+    margin: 0 10px;
+    color: #0073e6;
+    text-decoration: none;
+}
+
+.ad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f4f4;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ad-image {
+    max-width: 50px;
+    margin-right: 15px;
+}
+
+.promo {
+    text-align: center;
+    background: #007bff;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    color: white;
+}
+
+
+.new-badge {
+    color: #fff;
+    background: #28a745;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    flex-shrink: 0; /* Evita que el badge se reduzca si hay poco espacio */
+}
+
+.btn {
+    color: #fff;
+    background: #ff5722;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.collections {
+    padding: 20px;
+    text-align: center;
+}
+
+.collection-list {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+}
+
+.search {
+    text-align: center;
+    padding: 20px;
+}
+
+.search-container {
+    position: relative;
+    display: inline-block;
+    width: 80%;
+    max-width: 400px;
+}
+
+.search-bar {
+    padding: 10px 10px 10px 35px; /* Espacio para el ícono a la izquierda */
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Para asegurar que el padding no rompa el diseño */
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 16px; /* Tamaño del ícono */
+    color: #888; /* Color del ícono */
+    pointer-events: none; /* Asegura que el clic pase al input */
+}
+
+.tags {
+    margin: 10px auto; /* Centra horizontalmente */
+    max-width: 900px;
+    display: flex; /* Activa flexbox */
+    justify-content: center; /* Centra horizontalmente los elementos hijos */
+    gap: 10px; /* Espaciado entre tags */
+    flex-wrap: wrap; /* Permite que las tags se ajusten si hay muchas */
+    align-items: center; /* Centra verticalmente (si es necesario) */
+}
+
+.tag {
+    display: inline-block;
+    background: #e1e1e1;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin: 0 5px;
+    font-size: 0.9em;
+}
+
+/* Contenedor de la tabla */
+.table-container {
+    width: 90%; /* Ocupa el 90% del ancho disponible en pantallas grandes */
+    max-width: 800px; /* No excede los 800px de ancho */
+    margin: 0 auto; /* Centra la tabla horizontalmente */
+    overflow-x: auto; /* Permite scroll horizontal si es necesario */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+    border-radius: 8px; /* Bordes redondeados opcionales */
+    background-color: #fff;
+}
+
+/* Estilo de la tabla */
+table {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    border-collapse: collapse; /* Elimina espacios entre bordes */
+    font-family: Arial, sans-serif;
+    font-size: 0.9em;
+    color: #333;
+}
+
+th, td {
+    text-align: left; /* Alinea texto a la izquierda */
+    padding: 10px;
+    border: 1px solid #ddd; /* Bordes */
+}
+
+th {
+    background-color: #f4f4f4; /* Fondo para los encabezados */
+    font-weight: bold;
+}
+
+/* Enlaces */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+    .table-container {
+        width: 100%; /* Ocupa todo el ancho de la pantalla */
+    }
+
+
+
+    th, td {
+        text-align: left; /* Alinea texto a la izquierda */
+        padding: 10px;
+    }
+
+    tr {
+        margin-bottom: 15px; /* Espaciado entre filas */
+    }
+
+    th {
+        background-color: transparent; /* Elimina fondo de encabezados */
+        font-weight: bold;
+    }
+
+    td::before {
+        content: attr(data-label); /* Etiqueta descriptiva para cada celda */
+        font-weight: bold;
+        display: block;
+    }
+}
+
+
+
+.lecciones {
+    display: flex; /* Centrar con Flexbox */
+    flex-direction: column; /* Elementos en columna */
+    align-items: center; /* Alineación horizontal */
+    text-align: left; /* Centrado del texto */
+    margin-top: 20px; /* Margen superior más pequeño */
+    padding: 10px 20px; /* Espaciado interno reducido */
+    width: 100%; /* Ocupa el ancho completo */
+    /*background-color: #fff*/; /* Fondo limpio */
+}
+.lecciones h2 {
+    font-size: 1.8em; /* Tamaño del encabezado ajustado */
+    margin-bottom: 10px; /* Espaciado bajo el título */
+}
+.lecciones-list {
+    list-style: none; /* Elimina los puntos de la lista */
+    padding: 0; /* Sin padding */
+    margin: 0; /* Sin márgenes */
+}
+.lecciones-list li {
+    margin: 5px 0; /* Espaciado entre elementos */
+    font-weight: bold; 
+}
+.lecciones-list a {
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    color: #007BFF; /* Azul para los enlaces */
+    font-weight: bold; /* Resalta los enlaces */
+    transition: color 0.3s ease; /* Animación al pasar el mouse */
+}
+.lecciones-list a:hover {
+    color: #0056b3; /* Cambia el color al pasar el mouse */
+}
+
+
+
+/* añadido chatgpt para modificar el index*/
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espaciado entre las tarjetas */
+    padding: 40px;
+    background-color: #f9f9f9;
+    flex-wrap: wrap; /* Permite que las tarjetas se ajusten automáticamente */
+}
+
+.feature {
+    text-align: center;
+    padding: 20px;
+    max-width: 300px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column; /* Cambia a columna */
+        align-items: center; /* Centra los elementos */
+        gap: 30px; /* Espaciado vertical entre las tarjetas */
+    }
+
+    .feature {
+        max-width: 90%; /* Aumenta el ancho relativo en dispositivos pequeños */
+    }
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.feature h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.feature p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.feature .btn {
+    color: #fff;
+    background: #007bff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.feature .btn:hover {
+    background: #0056b3;
+}
+
+
+.course-list {
+    list-style: none;
+    padding: 0;
+    text-align: left; /* Centra los elementos */
+    max-width: 800px;
+}
+
+.course-list li {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra flotante */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación */
+    position: relative; /* Para los indicadores de cronología */
+}
+
+.course-list li:hover {
+    transform: translateY(-5px); /* Simula flotación al pasar el ratón */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Intensifica la sombra */
+}
+
+.course-list h2 {
+    margin: 0 0 10px;
+    font-size: 1.2rem; /* Tamaño ajustado del título */
+    font-weight: normal;
+    color: #333;
+}
+
+.course-list h2 a {
+    text-decoration: none;
+    color: #007bff;
+    display: inline-block;
+}
+
+.course-list h2 a:hover {
+    text-decoration: underline;
+}
+
+.course-list p {
+    margin: 5px 0 0;
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Indicadores de cronología */
+.course-list li::before {
+    /*content: "Lección " counter(lesson);*/
+    counter-increment: lesson; /* Incrementa automáticamente el contador */
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: bold;
+}
+
+.course-list {
+    counter-reset: lesson; /* Resetea el contador para las lecciones */
+}
+
+
+
+.lesson-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    color: white;
+    background-color: #007bff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.lesson-link span {
+    margin-right: 8px;
+}
+
+.lesson-link i {
+    font-size: 1rem;
+}
+
+.lesson-link:hover {
+    background-color: #0056b3;
+}
+
+
+/* Estilo General del Footer */
+.footer {
+    background-color: #007bff;
+    color: #f5f5f5;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .footer-about {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .footer-links,
+  .footer-social {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .footer h2,
+  .footer h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+  }
+  
+  .footer p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .footer ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer ul li {
+    margin: 10px 0;
+  }
+  
+  .footer ul li a {
+    color: #f5f5f5;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .footer ul li a:hover {
+    color: #ffd700; /* Color dorado al pasar el cursor */
+    text-decoration: underline;
+  }
+  
+  /* Parte Inferior del Footer */
+  .footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    border-top: 1px solid #333333;
+    padding-top: 20px;
+  }
+  
+  .footer-bottom p {
+    font-size: 0.9rem;
+  }
+  
+  .footer-bottom a {
+    color: #ffd700;
+    text-decoration: none;
+  }
+  
+  .footer-bottom a:hover {
+    text-decoration: underline;
+  }
+  
+
+  .center-section {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    background-color: #f9f9f9; /* Optional background color */
+}
+
+.btn {
+    display: inline-block; /* Ensures button behaves properly */
+    padding: 10px 20px; /* Add padding for a clickable area */
+    background-color: #007BFF; /* Blue background */
+    color: white; /* White text */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}

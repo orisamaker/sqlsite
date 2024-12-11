@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leccion 9 - Tipos de JOIN | aprendersql.com</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/lessons.css">
+    <link rel="stylesheet" href="/assets/css/exercises.css">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Título dinámico -->
+
+<!-- Meta Description -->
+<meta name="description" content="Descubre cómo combinar información de múltiples tablas para aprovechar la potencia de las bases de datos relacionales.">
+
+<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+<link rel="canonical" href="https://aprendersql.com/curso-sql/tipos-join-sql">
+<link rel="image_src" href="/assets/img/aprendersql.png">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Leccion 9 - Tipos de JOIN">
+<meta property="og:description" content="Descubre cómo combinar información de múltiples tablas para aprovechar la potencia de las bases de datos relacionales.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aprendersql.com/curso-sql/tipos-join-sql">
+<meta property="og:image" content="https://aprendersql.com/assets/img/aprendersql.png">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leccion 9 - Tipos de JOIN">
+<meta name="twitter:description" content="Descubre cómo combinar información de múltiples tablas para aprovechar la potencia de las bases de datos relacionales.">
+<meta name="twitter:image" content="https://aprendersql.com/assets/img/aprendersql.png">
+
+
+  
+
+  </head>
+<body>
+    <header class="header">
+    <div class="logo">
+        <a href="/" class="logo-container">
+            <img src="/assets/img/logoazul.png" alt="Logo" class="logo-icon">
+            <h1 class="logo-text">AprenderSQL<span>.com</span></h1>
+        </a>
+    </div>
+    <p class="description">
+        <strong><span class="learn-consulta-example">Aprende SQL</span>:</strong> aprendersql.com es un curso guiado gratuito de SQL. Este <strong>curso de sql</strong> para principiantes esta pensado para que aprendas este lenguaje de consulta de bases de datos <strong>desde cero</strong> paso a paso y con <strong>ejemplos</strong>. Tambien puedes consultar nuestro <strong>manual de referencia</strong>.
+    </p>
+   
+    
+    <div class="social-icons">
+        <!--<a href="#" class="icon">Github</a>-->
+        <a href="/curso-sql/" class="icon">Curso SQL</a>
+        <a href="/referencias-sql/" class="icon">Referencias</a>
+        <a href="/comunidad" class="icon">Comunidad</a>
+        <!--<a href="#" class="icon">Articulos</a>-->
+    </div>
+       
+</header>
+
+<!--
+<section class="promo">
+    <span class="new-badge">New!</span>
+    <p>Ebook <strong>"Curso SQL Avanzado con Ejercicios"</strong> ya disponible! 😊 <a href="#" class="btn">Consiguelo ahora! →</a></p>
+</section>
+-->
+
+    <main>
+        <script>
+    const exercises = [
+
+];
+</script>
+<div class="exercise-container">
+    <a href="/curso-sql/">← Lecciones</a>
+    <section class="lesson">
+        <h1>Leccion 9 - Tipos de JOIN</h1>
+        
+
+<p>Tiempo estimado de lectura: 8 minutos</p>
+        <div class="lesson-content">
+            <p>La potencia de trabajar con un modelo de base de datos relacional reside en poder combinar filas de diferentes tablas. En una base de datos relacional, tenemos diferentes tablas cada con informacion propia de una entidad. Podrias preguntarte y por que no tener un solo tablon con todos los datos? Aqui es donde entra una de las caracteristicas de las bases de datos relacionales por las que obtiene su potencia.</p>
+
+<p>En primer lugar, un modelo relacional permite evitar la redundancia de datos, esto es, repetir informacion, lo que permite ahorrar en costes de almacenamiento, porque?, imagina una tabla de ventas con millones de filas y en la que tengamos el nombre y apellidos de los clientes, el dia de la compra, el nombre del producto, entre otros campos, esto haria que tuvieramos informacion repetida, lo que con un modelo relacional podemos optimizar. Cuando hablamos de evitar repetir informacion en una base de datos, estariamos hablando de lo que se denomina normalizacion (de las tablas), es decir cada tabla contiene la informacion solamente necesaria a nivel de Cliente o Producto de manera minima. Por ello una tabla Clientes en un modelo relacional deberia de poder tener solo un unico registro para cada cliente. Recuerdas el concepto de clave primaria que explicamos en la leccion de Modelo Entidad-Relacion?. Lo mismo ocurriria con una tabla de Productos en un modelo de base de datos relacional. De esta manera si quisieramos registrar las ventas de la empresa, podriamos utilizar otra tabla en la que no necesitemos tener que repetir el Nombre y Apellidos del cliente en cada transaccion pudiendo poder tener en la tabla Ventas solo el identificador del cliente para asi poder en cada registro de la tabla Ventas con este identificador de cliente poder ir a la tabla Clientes y consultar el Nombre, Apellidos y demas datos de un cliente. En esto reside la potencia de las bases de datos relacionales.</p>
+
+<p>Y ahora vamos a aprender a como relacionar estas tablas con los diferentes tipos de JOIN en SQL.</p>
+
+<p>Sigamos con el ejemplo de nuestra base de datos de ventas, en el tenemos una tabla de Clientes, otra de Ventas, y otra de Productos. Clientes es una tabla maestra de clientes mismamente dicha con IdCliente, Nombre, Apellidos, Email, y otros campos. La tabla Ventas con campos como IdCliente, IdProducto, FechaVenta, Cantidad e Importe. Asi mismo la tabla Productos contiene las columnas IdProducto, Categoria y PrecioUnidad. Si te fijas hay campos entre las tablas que se repiten como el IdCliente e IdProducto. Como ya vimos en la leccion Entidad-Relacion, estos campos a priori seran los que nos permitiran relacionar estas tablas.</p>
+
+<h2 id="inner-join">INNER JOIN</h2>
+
+<p>Supongamos que entre la tabla Clientes y la tabla Ventas la relacion es 1:n es decir uno a muchos, es decir los datos de un cliente puede aparecer varias veces en la tabla ventas. Ahora supongamos que queremos, dada la informacion que tenemos en la tabla ventas, poder relacionar ambas tablas, Cliente y Ventas, obtener el Nombre y Apellidos de los clientes que realizaron compras, cuya informacion tenemos en la tabla ventas registrada dado cada IdCliente. Ademas no solo queremos el Nombre y Apellidos de los clientes si no tambien la fecha de la compra. Con SQL podemos hacer lo siguiente,</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">Nombre</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">Apellidos</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">FechaVenta</span>
+<span class="k">FROM</span> <span class="n">Clientes</span> <span class="k">AS</span> <span class="n">a</span>
+<span class="k">JOIN</span> <span class="n">Ventas</span> <span class="k">AS</span> <span class="n">b</span> <span class="k">ON</span> <span class="n">b</span><span class="p">.</span><span class="n">IdCliente</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">IdCliente</span> 
+</code></pre></div></div>
+
+<p>Aha, fijate en que estamos haciendo una lectura de ambas tablas Clientes y Ventas, hasta ahora solo hemos visto la palabra clave FROM que utilizamos siempre que queramos indicar de que tabla queremos leer datos, si no que ahora tambien para leer datos de otra tabla hemos utilizado la palabra clave JOIN. JOIN es lo que nos permite indicar de que otra tabla queremos leer datos, y ademas esta palabra clave indica en nuestra consulta el tipo de relacion que queremos realizar con la primera tabla dada por FROM. Una vez indicadas ambas tablas con FROM y JOIN hemos de indicar los campos por los que se relacionan ambas tablas, en este caso, lo indicamos a continuacion de la palabra clave ON, en este caso la relacion es que IdCliente de la tabla Clientes con el IdCliente de la tabla Ventas.</p>
+
+<p>Cuando utilizamos JOIN estamos indicando que la relacion entre ambas tablas es identica, es decir, que la relacion dada por los campos IdCliente es perfecta, de manera que en el resultado obtendremos todos los registros de la tabla Ventas que hagan match con la tabla Clientes dada la relacion utilizando el campo IdCliente como elemento comun.</p>
+
+<p>Asi mismo, cuando utilizamos JOIN tambien podemos utilizar en nuestra consulta la palabra INNER JOIN. Ambas palabras claves establecen el mismo tipo de match que queremos consultar entre dos tablas. No te preocupes por esto mismo ahora mismo.</p>
+
+<h2 id="left-join">LEFT JOIN</h2>
+
+<p>Ahora imagina que en nuestra base de datos tenemos registrados Clientes que nunca hicieron compras aun. Que ocurre que si realizamos la consulta anterior donde indicamos como relacionar ambas tablas dado por INNER JOIN, cuando queremos obtener los datos de la fecha de compra de nuestros clientes, al haber clientes que nunca han hecho compras, estos clientes no apareceran en el resultado debido a que por cada venta debe de haber un cliente.</p>
+
+<p>Por ello imagina que queremos saber ademas de los clientes que hicieron compras, tambien queremos saber que clientes no hicieron compras aun. Esto lo podemos obtener utilizando el siguiente tipo de JOIN que vamos a introducir ahora, LEFT JOIN.</p>
+
+<p>LEFT JOIN nos permite obtener resultados al relacionar dos tablas, incluso en los casos en los que no hagan match perfecto. Por lo que otra manera de escribir la consulta anterior seria de la siguiente manera.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">Nombre</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">Apellidos</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">FechaVenta</span>
+<span class="k">FROM</span> <span class="n">Clientes</span> <span class="k">AS</span> <span class="n">a</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">Ventas</span> <span class="k">AS</span> <span class="n">b</span> <span class="k">ON</span> <span class="n">b</span><span class="p">.</span><span class="n">IdCliente</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">IdCliente</span> 
+</code></pre></div></div>
+
+<p>Con esta consulta obtendremos los datos de todos los clientes hayan hecho compras o no, esto es, cuando la relacion Cliente.IdCliente = Ventas.IdCliente haga match o no.</p>
+
+<h2 id="right-join">RIGHT JOIN</h2>
+
+<p>Tambien se puede dar el caso que tengamos Ventas que por el motivo que sea, puede ser que un cliente haya decidido que se borren sus datos de la base de datos, que puede ser hoy en dia dada las distintas leyes de proteccion de datos de usuarios y consumidores de productos y servicios. Entonces si se da el caso de que tengamos esta casuistica, en nuestra tabla Ventas tendremos datos de Ventas que no podremos relacionar con nuestra tabla Clientes, no al menos podremos saber el Nombre y Apellidos del cliente que las realizo. De esta manera si queremos incluir estos registros en nuestros resultados podemos utilizar RIGHT JOIN como forma de relacionar ambas tablas. De esta manera la consulta que utilizamos al principio de la leccion quedaria asi.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">Nombre</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">Apellidos</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">FechaVenta</span>
+<span class="k">FROM</span> <span class="n">Clientes</span> <span class="k">AS</span> <span class="n">a</span>
+<span class="k">RIGHT</span> <span class="k">JOIN</span> <span class="n">Ventas</span> <span class="k">AS</span> <span class="n">b</span> <span class="k">ON</span> <span class="n">b</span><span class="p">.</span><span class="n">IdCliente</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">IdCliente</span> 
+</code></pre></div></div>
+
+<p>RIGHT JOIN seria el caso opuesto al utilizado en LEFT JOIN. Pero fijate que tambien podriamos reescribir nuestra consulta cambiando el orden de lectura de las tablas y obtener los mismos resultados. De manera que nuestra consulta quedaria asi</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">Nombre</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">Apellidos</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">FechaVenta</span>
+<span class="k">FROM</span> <span class="n">Ventas</span> <span class="k">AS</span> <span class="n">b</span> 
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">Clientes</span> <span class="k">AS</span> <span class="n">a</span> <span class="k">ON</span> <span class="n">b</span><span class="p">.</span><span class="n">IdCliente</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">IdCliente</span> 
+</code></pre></div></div>
+
+<h2 id="full-outer-join">FULL OUTER JOIN</h2>
+
+<p>Que ocurre si simplemente queremos todos los resultados combinar ambas tablas Clientes y Ventas indistintamente de que hagan match o no dado el campo IdCliente. En estos casos podemos utilizar el tipo de join llamado FULL OUTER JOIN. Para ello simplemente deberiamos de poder indicar en la forma de relacionar las dos tablas del ejemplo, de manera que nuestra consulta quedaria asi.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">Nombre</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">Apellidos</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">FechaVenta</span>
+<span class="k">FROM</span> <span class="n">Clientes</span> <span class="k">AS</span> <span class="n">a</span>
+<span class="k">FULL</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">Ventas</span> <span class="k">AS</span> <span class="n">b</span> <span class="k">ON</span> <span class="n">b</span><span class="p">.</span><span class="n">IdCliente</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">IdCliente</span> 
+</code></pre></div></div>
+
+<h2 id="leer-y-combinar-datos-de-dos-o-más-tablas">Leer y combinar datos de dos o más tablas</h2>
+
+<p>Ocurre que muchas veces queremos combinar filas de dos mas tablas en una sola consulta. Esto es posible, podemos leer datos de dos o mas tablas en una sola consulta SQL, para ello simplemente hay que añadir indicando el tipo de JOIN que queremos establecer con la primera tabla de lectura.</p>
+
+<p>Por ejemplo,</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">IdVenta</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">IdFecha</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">Importe</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">Producto</span> <span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">Nombre</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">Apellidos</span>
+<span class="k">FROM</span> <span class="n">Ventas</span> <span class="k">AS</span> <span class="n">a</span> 
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">Productos</span> <span class="k">AS</span> <span class="n">b</span> <span class="k">ON</span> <span class="n">b</span><span class="p">.</span><span class="n">IdProducto</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">idProducto</span> 
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">Clientes</span> <span class="k">AS</span> <span class="k">c</span> <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">IdCliente</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">IdCliente</span> 
+</code></pre></div></div>
+
+<p>Esta consulta nos permitirá combinar filas de la tabla Ventas con las otras dos tablas Productos y Clientes. Sencillo verdad?</p>
+
+        </div>
+    
+    </section>
+
+    
+  <div class="next-post">
+    <p>Siguiente lección: <a href="/curso-sql/agregaciones-agrupaciones-group-by">Leccion 10 - Agregaciones y agrupaciones con GROUP BY</a></p>
+  </div>
+
+
+
+                <!--<p>No hay ejercicios disponibles para esta lección.</p>-->
+            </section>
+        
+
+</div>
+
+<!---
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.2.1/dist/sql-wasm-debug.js" crossorigin="anonymous"></script>
+<script src="/assets/js/sql.js"></script>   
+<script src="/assets/js/editor.js"></script>   
+-->
+
+    </main>
+          <!--<footer class="footer">-->
+    <footer class="">
+        <!--
+    <div class="footer-container">
+      <div class="footer-about">
+        <h2>AprenderSQL</h2>
+        <p>Tu recurso en español para aprender SQL desde cero. Domina el lenguaje de bases de datos.</p>
+      </div>
+  
+      <div class="footer-links">
+        <h3>Enlaces Útiles</h3>
+        <ul>
+          <li><a href="/curso-sql">Curso SQL</a></li>
+          <li><a href="/referencia-sql">Manual de Referencia</a></li>
+          <li><a href="/comunidad">Comunidad</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-social">
+        <h3>Síguenos</h3>
+        <ul>
+          <li><a href="https://linkedin.com/company/aprendersql" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+-->      
+    <div class="footer-bottom">
+      <p>© 2024 AprenderSQL. Todos los derechos reservados. | <a href="/privacidad">Política de Privacidad</a></p>
+    </div>
+  </footer>
+    
+</body>
+</html>

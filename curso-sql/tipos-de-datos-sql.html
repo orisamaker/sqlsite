@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leccion 4 - Tipos de datos en SQL | aprendersql.com</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/lessons.css">
+    <link rel="stylesheet" href="/assets/css/exercises.css">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Título dinámico -->
+
+<!-- Meta Description -->
+<meta name="description" content="Conoce los tipos de datos en SQL y cómo determinan el formato y las operaciones posibles en una tabla.">
+
+<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+<link rel="canonical" href="https://aprendersql.com/curso-sql/tipos-de-datos-sql">
+<link rel="image_src" href="/assets/img/aprendersql.png">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Leccion 4 - Tipos de datos en SQL">
+<meta property="og:description" content="Conoce los tipos de datos en SQL y cómo determinan el formato y las operaciones posibles en una tabla.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aprendersql.com/curso-sql/tipos-de-datos-sql">
+<meta property="og:image" content="https://aprendersql.com/assets/img/aprendersql.png">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leccion 4 - Tipos de datos en SQL">
+<meta name="twitter:description" content="Conoce los tipos de datos en SQL y cómo determinan el formato y las operaciones posibles en una tabla.">
+<meta name="twitter:image" content="https://aprendersql.com/assets/img/aprendersql.png">
+
+
+  
+
+  </head>
+<body>
+    <header class="header">
+    <div class="logo">
+        <a href="/" class="logo-container">
+            <img src="/assets/img/logoazul.png" alt="Logo" class="logo-icon">
+            <h1 class="logo-text">AprenderSQL<span>.com</span></h1>
+        </a>
+    </div>
+    <p class="description">
+        <strong><span class="learn-consulta-example">Aprende SQL</span>:</strong> aprendersql.com es un curso guiado gratuito de SQL. Este <strong>curso de sql</strong> para principiantes esta pensado para que aprendas este lenguaje de consulta de bases de datos <strong>desde cero</strong> paso a paso y con <strong>ejemplos</strong>. Tambien puedes consultar nuestro <strong>manual de referencia</strong>.
+    </p>
+   
+    
+    <div class="social-icons">
+        <!--<a href="#" class="icon">Github</a>-->
+        <a href="/curso-sql/" class="icon">Curso SQL</a>
+        <a href="/referencias-sql/" class="icon">Referencias</a>
+        <a href="/comunidad" class="icon">Comunidad</a>
+        <!--<a href="#" class="icon">Articulos</a>-->
+    </div>
+       
+</header>
+
+<!--
+<section class="promo">
+    <span class="new-badge">New!</span>
+    <p>Ebook <strong>"Curso SQL Avanzado con Ejercicios"</strong> ya disponible! 😊 <a href="#" class="btn">Consiguelo ahora! →</a></p>
+</section>
+-->
+
+    <main>
+        <script>
+    const exercises = [
+
+];
+</script>
+<div class="exercise-container">
+    <a href="/curso-sql/">← Lecciones</a>
+    <section class="lesson">
+        <h1>Leccion 4 - Tipos de datos en SQL</h1>
+        
+
+<p>Tiempo estimado de lectura: 3 minutos</p>
+        <div class="lesson-content">
+            <p>En SQL los tipos de datos son imprescindibles a la hora de definir que tipo de valores puede contener una columna en una tabla. Una columna en una tabla solo podra contener un tipo de dato, lo que determinara el formato y el tipo de operaciones que se pueden realizar sobre esta.</p>
+
+<p>El tipo de dato puede variar ligeramente segun el sistema de bases de datos (MySQL, PostgreSQL, SQL Server, etc..) pero el concepto es el mismo para todos.</p>
+
+<h2 id="principales-categorias-de-tipo-de-datos-en-sql">Principales categorias de tipo de datos en SQL</h2>
+
+<h3 id="numericos">Numericos</h3>
+
+<p>Un tipo de dato numerico sirven para almacenar numeros, estos pueden ser enteros o decimales.</p>
+
+<p>Tipos:</p>
+<ul>
+  <li>INTEGER (INT): Enteros (números sin punto decimal). Ejemplo: 1, 42, -100.</li>
+  <li>SMALLINT: Enteros pequeños, con un rango más limitado.</li>
+  <li>BIGINT: Enteros grandes, con un rango más amplio.</li>
+  <li>DECIMAL (NUMERIC): Números con una cantidad fija de dígitos decimales. Ejemplo: 123.45.</li>
+  <li>FLOAT: Números en coma flotante (decimales) con mayor flexibilidad pero menos precisión.</li>
+  <li>REAL: Similar a FLOAT, pero generalmente de menor precisión.</li>
+</ul>
+
+<h3 id="cadenas-de-texto">Cadenas de texto</h3>
+
+<p>Sirven para almacenar caracteres, palabras o textos.</p>
+
+<p>Tipos:</p>
+<ul>
+  <li>CHAR(n): Cadena de texto de longitud fija de n caracteres. Ejemplo: CHAR(10) siempre almacena 10 caracteres, rellenando con espacios si es necesario.</li>
+  <li>VARCHAR(n): Cadena de texto de longitud variable, con un máximo de n caracteres. Ejemplo: VARCHAR(50) puede almacenar hasta 50 caracteres.</li>
+  <li>TEXT: Cadenas de texto de longitud ilimitada o muy extensa (depende del sistema de base de datos). Ideal para almacenar grandes bloques de texto.</li>
+</ul>
+
+<h3 id="fechas">Fechas</h3>
+
+<p>Sirven para definir fechas , horas o ambos.</p>
+
+<p>Tipos:</p>
+
+<ul>
+  <li>DATE: Almacena una fecha en formato YYYY-MM-DD. Ejemplo: 2023-11-14.</li>
+  <li>TIME: Almacena una hora en formato HH:MM:SS. Ejemplo: 14:30:00.</li>
+  <li>DATETIME: Combina fecha y hora en formato YYYY-MM-DD HH:MM:SS. Ejemplo: 2023-11-14 14:30:00.</li>
+  <li>TIMESTAMP: Similar a DATETIME, pero a menudo incluye zona horaria y se usa para registrar marcas de tiempo automáticas.</li>
+</ul>
+
+<h3 id="booleanos">Booleanos</h3>
+<p>Representan valores tipo verdadero/falso.</p>
+
+<p>Tipos:</p>
+<ul>
+  <li>BOOLEAN: solo puede contener TRUE, FALSE o NULL</li>
+</ul>
+
+<h3 id="binarios">Binarios</h3>
+<p>Sirven para almacenar datos como imagenes, videos o documentos.</p>
+
+<p>Tipos:</p>
+<ul>
+  <li>BLOB (Binary Large Object): Almacena grandes cantidades de datos binarios.</li>
+  <li>VARBINARY(n): Datos binarios de longitud variable, con un máximo de n bytes.</li>
+  <li>BINARY(n): Datos binarios de longitud fija de n bytes.</li>
+</ul>
+
+<h3 id="otros-tipos-de-datos">Otros tipos de datos</h3>
+<p>Tambien podemos encontrar otros tipos de datos en una base de datos, como JSON, que son documentos tipo clave-valor, y GEOMETRY, este ultimo sirve para almacenar datos de posiciones de geolocalizacion con longitud y latitud.</p>
+
+<h2 id="consideraciones-al-elegir-el-tipo-de-datos">Consideraciones al elegir el tipo de datos</h2>
+<p>Debemos tener en cuenta que a la hora de elegir el tipo de datos en el diseño de columna de una tabla el tipo de datos puede influir en el almacenamiento y la cantidad de datos que se pueden generar. Por ejemplo un CHAR siempre ocupara una longitud de caracteres segun venga definido, mientras que VARCHAR es un tipo de datos en el que la longitud de caracteres variara dependiendo del valor registrado, proporcionando la capacidad de ser mas flexible a la hora de ocupar mas espacio en la base de datos.</p>
+
+<p>Tambien debemos tener en cuenta el tipo de datos apropiado segun el formato de los valores, por ejemplo para valores de fecha es mejor utilizar DATE donde los valores seguiran el patron YYYY-MM-DD (Ej: 2024-11-16), en vez de un cadena de texto para almacenar 16/11/2024. Esto ultimo incluso puede dar lugar a error de calidad en los datos cuando durante la captura del dato se introduce manualmente, por eso predefinir y elegir el tipo de dato mas adecuado evitara tambien este tipo de problemas a la hora de explotar los datos.</p>
+
+
+        </div>
+    
+    </section>
+
+    
+  <div class="next-post">
+    <p>Siguiente lección: <a href="/curso-sql/operaciones-crud">Leccion 5 - Operaciones CRUD</a></p>
+  </div>
+
+
+
+                <!--<p>No hay ejercicios disponibles para esta lección.</p>-->
+            </section>
+        
+
+</div>
+
+<!---
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.2.1/dist/sql-wasm-debug.js" crossorigin="anonymous"></script>
+<script src="/assets/js/sql.js"></script>   
+<script src="/assets/js/editor.js"></script>   
+-->
+
+    </main>
+          <!--<footer class="footer">-->
+    <footer class="">
+        <!--
+    <div class="footer-container">
+      <div class="footer-about">
+        <h2>AprenderSQL</h2>
+        <p>Tu recurso en español para aprender SQL desde cero. Domina el lenguaje de bases de datos.</p>
+      </div>
+  
+      <div class="footer-links">
+        <h3>Enlaces Útiles</h3>
+        <ul>
+          <li><a href="/curso-sql">Curso SQL</a></li>
+          <li><a href="/referencia-sql">Manual de Referencia</a></li>
+          <li><a href="/comunidad">Comunidad</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-social">
+        <h3>Síguenos</h3>
+        <ul>
+          <li><a href="https://linkedin.com/company/aprendersql" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+-->      
+    <div class="footer-bottom">
+      <p>© 2024 AprenderSQL. Todos los derechos reservados. | <a href="/privacidad">Política de Privacidad</a></p>
+    </div>
+  </footer>
+    
+</body>
+</html>

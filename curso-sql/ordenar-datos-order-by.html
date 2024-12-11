@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leccion 8 - Ordenar datos con ORDER BY | aprendersql.com</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/lessons.css">
+    <link rel="stylesheet" href="/assets/css/exercises.css">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Título dinámico -->
+
+<!-- Meta Description -->
+<meta name="description" content="Organiza tus resultados de consultas en orden alfabético, cronológico o basado en criterios personalizados.">
+
+<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+<link rel="canonical" href="https://aprendersql.com/curso-sql/ordenar-datos-order-by">
+<link rel="image_src" href="/assets/img/aprendersql.png">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Leccion 8 - Ordenar datos con ORDER BY">
+<meta property="og:description" content="Organiza tus resultados de consultas en orden alfabético, cronológico o basado en criterios personalizados.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aprendersql.com/curso-sql/ordenar-datos-order-by">
+<meta property="og:image" content="https://aprendersql.com/assets/img/aprendersql.png">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leccion 8 - Ordenar datos con ORDER BY">
+<meta name="twitter:description" content="Organiza tus resultados de consultas en orden alfabético, cronológico o basado en criterios personalizados.">
+<meta name="twitter:image" content="https://aprendersql.com/assets/img/aprendersql.png">
+
+
+  
+
+  </head>
+<body>
+    <header class="header">
+    <div class="logo">
+        <a href="/" class="logo-container">
+            <img src="/assets/img/logoazul.png" alt="Logo" class="logo-icon">
+            <h1 class="logo-text">AprenderSQL<span>.com</span></h1>
+        </a>
+    </div>
+    <p class="description">
+        <strong><span class="learn-consulta-example">Aprende SQL</span>:</strong> aprendersql.com es un curso guiado gratuito de SQL. Este <strong>curso de sql</strong> para principiantes esta pensado para que aprendas este lenguaje de consulta de bases de datos <strong>desde cero</strong> paso a paso y con <strong>ejemplos</strong>. Tambien puedes consultar nuestro <strong>manual de referencia</strong>.
+    </p>
+   
+    
+    <div class="social-icons">
+        <!--<a href="#" class="icon">Github</a>-->
+        <a href="/curso-sql/" class="icon">Curso SQL</a>
+        <a href="/referencias-sql/" class="icon">Referencias</a>
+        <a href="/comunidad" class="icon">Comunidad</a>
+        <!--<a href="#" class="icon">Articulos</a>-->
+    </div>
+       
+</header>
+
+<!--
+<section class="promo">
+    <span class="new-badge">New!</span>
+    <p>Ebook <strong>"Curso SQL Avanzado con Ejercicios"</strong> ya disponible! 😊 <a href="#" class="btn">Consiguelo ahora! →</a></p>
+</section>
+-->
+
+    <main>
+        <script>
+    const exercises = [
+
+];
+</script>
+<div class="exercise-container">
+    <a href="/curso-sql/">← Lecciones</a>
+    <section class="lesson">
+        <h1>Leccion 8 - Ordenar datos con ORDER BY</h1>
+        
+
+<p>Tiempo estimado de lectura: 2 minutos</p>
+        <div class="lesson-content">
+            <p>Muchas veces ocurre que necesitamos podemos tener los datos organizados para facilitar el analisis del resultado de una consulta. Por ejemplo basandonos en nuestra tabla de ejemplo Empleados, podemos querer obtener los resultados de hacer una consulta sobre la tabla de manera que podamos ver el listado de empleados ordenados alfabeticamente por Nombre y Apellidos, o quizas incluso obtener los resultados ordenados por fecha de ingreso en la empresa. Esto puede ser util a la hora de analizar datos o simplemente como un reporte como entregable para alguien que vaya a trabajar con estos datos tras solicitarnoslo a nosotros.</p>
+
+<h2 id="uso-de-order-by">Uso de ORDER BY</h2>
+
+<p>Ordenar datos con SQL es muy sencillo. Tan solo debemos utilizar el clause (comando) ORDER BY en la ultima parte de nuestra consulta SELECT e indicar los campos separados por comas por los que queremos obtener el ordenamiento del dataset resultado.</p>
+
+<p>Por ejemplo, teniendo nuestra tabla de ejemplo Empleados que hemos visto anteriormente, queremos ver los datos ordenados por Nombre de los empleados, de esta manera escribiremos y lanzaremos la siguiente consulta.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Empleados</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">Nombre</span>
+</code></pre></div></div>
+
+<p>Por defecto el ordenamiento de los campos utilizados, si no indicamos lo contrario, se realiza de manera ascendente, esto es alfabeticamente de A a Z en caso de cadenas, y de menor a mayor en caso de datos numericos y de fecha.</p>
+
+<p>Tambien podriamos haber escrito la consulta anterior indicando el orden que queremos como a continuacion.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Empleados</span> 
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">Nombre</span> <span class="k">ASC</span> 
+</code></pre></div></div>
+
+<p>La palabra clave tras el campo Nombre indica ordenamiento del campo de manera ascendente, en este caso, el ordenamiento es alfabeticamente de A a Z.</p>
+
+<p>Si por el contrario quisieramos ordenar de Z a A, es decir, de manera descendente, tendremos que utilizar la palabra clave DESC. Por ejemplo, si en vez de ordenar alfabeticamente nuestra tabla Empleados por el campo Nombre lo quisieramos hacer de manera descendente, debemos escribir la siguiente consulta.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Empleados</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">Nombre</span> <span class="k">DESC</span> 
+</code></pre></div></div>
+
+<p>Facil verdad?</p>
+
+<p>Y que ocurre si queremos poder ordenar utilizando dos o mas campos, es sencillo, tan solo deberemos añadir el campo por el que tambien queremos ordenar indicando si el orden que queremos es ascendente o descente. Por ejemplo, ahora queremos ordenar la tabla empleados por Nombre y Apellido, ambas de manera ascendente, para ello escribiremos la siguiente consulta.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Empleados</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">Nombre</span><span class="p">,</span> <span class="n">Apellido</span> 
+</code></pre></div></div>
+
+<p>En este caso el dataset resultado aparece ordenado primero por la columna Nombre y asi mismo por apellido.</p>
+
+<p>Si quisieramos ordenar primero por Apellido y luego por nombre, entonces tenemos primero que incluir en el ORDER BY el campo Apellido y despues separado por una coma el campo Nombre.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Empleados</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">Apellido</span><span class="p">,</span> <span class="n">Nombre</span>
+</code></pre></div></div>
+
+        </div>
+    
+    </section>
+
+    
+  <div class="next-post">
+    <p>Siguiente lección: <a href="/curso-sql/tipos-join-sql">Leccion 9 - Tipos de JOIN</a></p>
+  </div>
+
+
+
+                <!--<p>No hay ejercicios disponibles para esta lección.</p>-->
+            </section>
+        
+
+</div>
+
+<!---
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.2.1/dist/sql-wasm-debug.js" crossorigin="anonymous"></script>
+<script src="/assets/js/sql.js"></script>   
+<script src="/assets/js/editor.js"></script>   
+-->
+
+    </main>
+          <!--<footer class="footer">-->
+    <footer class="">
+        <!--
+    <div class="footer-container">
+      <div class="footer-about">
+        <h2>AprenderSQL</h2>
+        <p>Tu recurso en español para aprender SQL desde cero. Domina el lenguaje de bases de datos.</p>
+      </div>
+  
+      <div class="footer-links">
+        <h3>Enlaces Útiles</h3>
+        <ul>
+          <li><a href="/curso-sql">Curso SQL</a></li>
+          <li><a href="/referencia-sql">Manual de Referencia</a></li>
+          <li><a href="/comunidad">Comunidad</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-social">
+        <h3>Síguenos</h3>
+        <ul>
+          <li><a href="https://linkedin.com/company/aprendersql" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+-->      
+    <div class="footer-bottom">
+      <p>© 2024 AprenderSQL. Todos los derechos reservados. | <a href="/privacidad">Política de Privacidad</a></p>
+    </div>
+  </footer>
+    
+</body>
+</html>
