@@ -536,7 +536,7 @@ a:hover {
   }
   
   .footer-bottom a {
-    color: #ffd700;
+    
     text-decoration: none;
   }
   
@@ -566,3 +566,4 @@ a:hover {
 .btn:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
+
