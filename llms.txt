@@ -16,6 +16,4 @@ Este sitio ofrece un curso gratuito de SQL en español: lecciones paso a paso, q
 - [Unión de tablas (JOIN)](/curso-sql/tipos-join-sql.html): Combinar datos de varias tablas.
 - [Agregación (GROUP BY)](/curso-sql/agregaciones-agrupaciones-group-by.html): GROUP BY y funciones de agregación.
 
-## Páginas
 
-- [Política de privacidad](/privacidad/)
