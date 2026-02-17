@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /privacidad/
 
-Sitemap: /sitemap.xml
+Sitemap: https://www.aprendersql.com/sitemap.xml
