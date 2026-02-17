@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" as="style" onload="this.rel='stylesheet'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas (SELECT) | Aprender SQL</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/styles.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" />
+
+<link rel="canonical" href="/curso-sql/consultas-select.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Consultas (SELECT)", "description": "Consultas básicas y recuperación de datos.", "author": {"@type": "Person", "name": "Adrian Rodriguez"}, "datePublished": "2025-01-02T10:00:00+01:00", "dateModified": "2025-08-02T10:00:00+01:00", "mainEntityOfPage": {"@type": "WebPage", "@id": "/curso-sql/consultas-select.html"}}</script>
+</head>
+<body>
+    <div class="page-wrap">
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a href="/" class="site-logo" aria-label="Inicio">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                        <path d="M21 5c0 1.66-4 3-9 3S3 6.66 3 5"/>
+                    </svg>
+                </a>
+                <span class="site-title">aprendersql.com</span>
+            </div>
+            <nav class="site-nav">
+                <a href="/#modules">Módulos</a>
+            </nav>
+            <button class="menu-btn" id="menuButton" aria-label="Menú">
+                <span class="material-icons">menu</span>
+            </button>
+        </header>
+
+        <main class="site-main">
+<div class="layout-content-container">
+    <nav class="breadcrumb">
+        <a href="/">← Volver al curso</a>
+        <span class="breadcrumb-sep">|</span>
+        <a href="/curso-sql/filtrar-datos-where.html" class="breadcrumb-next">Siguiente módulo: Filtros (WHERE) →</a>
+    </nav>
+
+    <article class="article-card">
+        <header>
+            <h1>Consultas (SELECT)</h1>
+            <div class="article-meta">
+                <time datetime="2025-01-02T10:00:00+01:00">Thu 02 January 2025</time>
+                <span class="article-author-link">Adrian Rodriguez</span>
+            </div>
+        </header>
+        <div class="article-content">
+            <p>En esta leccion vamos a aprender como leer datos de una base de datos, para ello utilizamos el comando <code>SELECT</code>.</p>
+<h2>Uso del comando SELECT</h2>
+<p>Pongamos por ejemplo que tenemos una tabla Clientes con las siguientes columnas IdCliente, Nombre, Apellidos, Email y Telefono. Para leer datos de esta tabla podemos utilizar el siguiente codigo.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Clientes</span>
+</code></pre></div>
+
+<p>En linea con los datos de la tabla Clientes que utilizamos en la leccion anterior donde creamos datos, el resultado de nuestra consulta seria el siguiente.</p>
+<table>
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Apellido</th>
+<th>Email</th>
+<th>Telefono</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>John</td>
+<td>Doe</td>
+<td>john@email.com</td>
+<td>555112233</td>
+</tr>
+<tr>
+<td>Maria</td>
+<td>Salas</td>
+<td>maria@example.com</td>
+<td>555221133</td>
+</tr>
+<tr>
+<td>Juan</td>
+<td>Perez</td>
+<td>juan@example2.com</td>
+<td>555332211</td>
+</tr>
+</tbody>
+</table>
+<p>Este codigo nos permitira conocer todos los datos contenidos en la tabla, independientemente del numero de columnas, incluso sin saber el nombre de estas columnas. Es por ello que empleamos el comando SELECT <em>. El simbolo </em>, o tambien llamado star, nos permite traer todas las columnas de la tabla. Esto viene muy bien si por ejemplo no conocemos el esquema de la tabla y queremos hacer una exploracion de los datos.</p>
+<p>Fijate tambien que en la consulta utilizamos el comando FROM. Esto lo necesitamos para indicar de que tabla queremos leer datos, en el caso del ejemplo, la tabla Clientes.</p>
+<p>Pero tambien podemos seleccionar columnas especificas de la tabla, para ello podemos hacer lo siguiente.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Nombre</span><span class="p">,</span><span class="w"> </span><span class="n">Apellidos</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Clientes</span>
+</code></pre></div>
+
+<p>En este caso la consulta solo nos devolvera los datos de Nombre y Apellidos de todos los clientes de la tabla Clientes. En este caso la tabla Clientes tiene mas columnas (o campos) pero con nuestro codigo hemos indicado que solo queremos los datos de Nombre y Apellidos.</p>
+<h2>Uso de alias</h2>
+<p>El uso de alias puede ser necesario a la hora de escribir nuestras consultas. Una alias es una forma de renombrar los campos o las tablas durante la ejecucion de nuestras consultas. Pero ten en cuenta que el uso de alias no cambia los datos permanentes de las tablas.</p>
+<p>Esto se puede dar por ejemplo cuando queremos calcular una columna derivada como resultado de operar una transformacion sobre una o mas columnas de una tabla, de esta manera le asignaremos un alias a la columna. Poder utilizar un alias nos permitira indicar como queremos nombre a esta nueva columna en el resultado de nuestra consulta.</p>
+<p>Por ejemplo,</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">CONCAT</span><span class="p">(</span><span class="n">Nombre</span><span class="p">,</span><span class="w"> </span><span class="n">Apellidos</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">NombreCompleto</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Clientes</span>
+</code></pre></div>
+
+<p>En este caso hemos querido conocer el nombre completo de los clientes, concatenando el valor de Nombre mas el valor de los Apellidos, por ello hemos utilizado la funcion CONCAT, que sirve precisamente para concatenar dos valores de cadena. La funcion CONCAT no funciona sobre valores numericos a no ser que convirtamos estos valores numericos en valores de cadena.</p>
+<p>Fijate que a la operacion de concatenar le sigue la keyword AS. Esto sirve para indicar el alias del campo, que en este caso le hemos dado el nombre de NombreCompleto. Esto nos permitira tambien podemos crear campos con nuevos nombres en el resultado de nuestras consultas (una tabla no puede tener dos campos con el mismo nombre) de manera que podremos guardar los datos como un campo calculado, o simplemente en una tabla nueva.</p>
+<p>El comando AS tambien nos permite hacer la misma operacion de indicar una alias para las tablas, esto es asi por que muchas veces leeremos datos de varias tablas a la vez, por ejemplo.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Clientes</span><span class="p">.</span><span class="n">Nombre</span><span class="p">,</span><span class="w"> </span><span class="n">Clientes</span><span class="p">.</span><span class="n">Apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">Ventas</span><span class="p">.</span><span class="n">IdOrder</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Clientes</span><span class="w"> </span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">Ventas</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Clientes</span><span class="p">.</span><span class="n">IdCliente</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ventas</span><span class="p">.</span><span class="n">IdCliente</span>
+</code></pre></div>
+
+<p>Nota: No hemos explicado acerca de la tabla Ventas en cuanto a su esquema o el conjunto de sus columnas, pero simplemente quedate con que es una tabla donde se registran las ventas y que contiene un campo que registra el id del cliente que realizo la compra, en este caso dado por el campo IdCliente. De esta manera podremos, en combinacion con la tabla Clientes, saber el nombre y apellidos del cliente que realizo la compra. Este tipo de consultas las trataremos en capitulos siguientes, asi que de momento no te preocupes, pero fijate en como utilizamos el comando AS para crear alias de nuestras tablas.</p>
+<p>En este caso la consulta lee datos de dos tablas al mismo tiempo, Clientes y Ventas. Estas se relacionan por el campo IdCliente, de manera que en la tabla Ventas tenemos registrados los datos de ventas y en la tabla Clientes tenemos los datos de los clientes. En nuestra consulta de ejemplo lo que hemos querido hacer es poder relacionar ambas tablas con el objetivo de conocer el Nombre y Apellidos de los clientes que realizaron las ventas, dado que estos dos campos nos se incluyen en la tabla Ventas. Entonces cuando hacemos una consulta con dos tablas hemos de indicar en el SELECT a que tabla pertene cada campo que queremos leer de las tablas, es por ello que a cada campo le precede el nombre de la tabla a la que pertenece. Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Clientes</span><span class="p">.</span><span class="n">Nombre</span>
+</code></pre></div>
+
+<p>Pero esta manera de escribir nuestras consultas puede ser un poco tedioso, dado que imaginate que queremos realizar una consulta leyendo datos de 20 columnas, de manera que necesitariamos escribir el nombre de la tabla a la que precede 20 veces. Pero hay una manera mas sencilla de elaborar nuestra consulta indicando un alias. Un alias es el nombre que le damos a nuestras tablas o columnas al momento de ejecutar nuestra consulta, los alias no se almacenan en base de datos, tenlo en cuenta, solamente nos sirven para dar un nombre nombre temporal a los objetos, este caso tablas y columnas.</p>
+<p>Entonces podemos reescribir nuestra consulta de la siguiente manera. La manera de declarar un alias es con el comando AS.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">Nombre</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">Apelllidos</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">IdOrder</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Clientes</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">a</span><span class="w"> </span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">Ventas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">IdCliente</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">IdCliente</span>
+</code></pre></div>
+
+<p>El proposito de dar una alias a las tablas en este caso, es que no necesitamos escribir el nombre completo de las tablas cada vez que lo necesitaemos, si no simplemente usar un alias, pudiendo tener una consulta mas facil de leer y de utilizar.</p>
+        </div>
+    </article>
+
+    <section id="quiz-section" class="quiz-section" data-module-key="querying" data-next-url="/curso-sql/filtrar-datos-where.html" data-next-title="Filtros (WHERE)">
+        <h2>Quiz del módulo</h2>
+        <script type="application/json" id="quiz-data">[{"question": "¿Qué símbolo se usa en SELECT para traer todas las columnas de la tabla?", "options": ["*", "?", "ALL", "%"], "correct": 0}, {"question": "¿Para qué sirve la cláusula FROM en una consulta?", "options": ["Para filtrar filas", "Para indicar de qué tabla leer datos", "Para ordenar resultados", "Para agrupar"], "correct": 1}, {"question": "¿Con qué palabra clave indicamos un alias de columna o tabla?", "options": ["AS", "ALIAS", "AS AS", "RENAME"], "correct": 0}]</script>
+        <script type="application/json" id="quiz-title">"Consultas (SELECT)"</script>
+        <div id="quiz-container"></div>
+    </section>
+
+    <nav class="article-nav-bottom">
+        <a href="/curso-sql/filtrar-datos-where.html" class="link-next-module">Siguiente módulo: Filtros (WHERE) →</a>
+    </nav>
+</div>
+        </main>
+
+        <footer class="site-footer">
+            <p>© 2025 Aprender SQL. Aprende SQL de forma interactiva. <a href="/privacidad/">Política de privacidad</a></p>
+        </footer>
+    </div>
+    <script src="/theme/js/contenido.js?v=2"></script>
+    <script src="/theme/js/script.js"></script>
+    <!-- 100% privacy-first analytics -->
+<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+
+
+</body>
+</html>

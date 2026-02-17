@@ -1,90 +1,224 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" as="style" onload="this.rel='stylesheet'">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aprender SQL | Curso de SQL Gratis para principiantes paso a paso</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-   
-   
-    <link rel="stylesheet" href="/assets/css/lessons.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Título dinámico -->
+    <title>Aprender SQL - Curso gratuito de SQL</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/styles.css">
+    <link rel="shortcut icon" href="/images/favicon.ico" />
 
-<!-- Meta Description -->
-<meta name="description" content="AprenderSQL.com es un curso guiado gratuito de SQL paso a paso con ejemplos para que puedas aprender a manejar el lenguaje de bases de datos.">
-
-<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
-<link rel="canonical" href="https://aprendersql.com">
-<link rel="image_src" href="/assets/img/aprendersql.png">
-
-<!-- Open Graph Meta Tags -->
-<meta property="og:title" content="Curso SQL">
-<meta property="og:description" content="Curso de SQL gratuito paso a paso">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://aprendersql.com/curso-sql/index.html">
-<meta property="og:image" content="/assets/img/aprendersql.png">
-
-<!-- Twitter Card Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Curso SQL">
-<meta name="twitter:description" content="Curso de SQL gratuito paso a paso">
-<meta name="twitter:image" content="/assets/img/aprendersql.png">
-
-<meta name="google-site-verification" content="6gB6MuFKeuLqHe8tqViHcazn3N5hnbkqmsk95b3j_00" />    
-<script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","description":"Curso de SQL gratuito paso a paso","headline":"Curso SQL","url":"http://aprendersql.com"}
-</script>
-
+<meta name="description" content="Curso de SQL gratis en español"><link rel="canonical" href="/"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Aprender SQL", "description": "Curso de SQL gratis en español", "url": "/", "inLanguage": "es"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Course", "name": "Aprender SQL", "description": "Curso de SQL gratis en español", "provider": {"@type": "Person", "name": "Adrian Rodriguez"}, "inLanguage": "es", "isAccessibleForFree": true}</script>
 </head>
 <body>
-    <header class="header">
-        <div class="logo">
-            <a href="/" class="logo-container">
-                <img src="/assets/img/logoazul.png" alt="Logo" class="logo-icon">
-                <h1 class="logo-text">AprenderSQL<span>.com</span></h1>
+    <div class="page-wrap">
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a href="/" class="site-logo" aria-label="Inicio">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                        <path d="M21 5c0 1.66-4 3-9 3S3 6.66 3 5"/>
+                    </svg>
+                </a>
+                <span class="site-title">aprendersql.com</span>
+            </div>
+            <nav class="site-nav">
+                <a href="/#modules">Módulos</a>
+            </nav>
+            <button class="menu-btn" id="menuButton" aria-label="Menú">
+                <span class="material-icons">menu</span>
+            </button>
+        </header>
+
+        <main class="site-main">
+<div class="layout-content-container">
+    <!-- Hero con imagen de fondo -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                    <path d="M21 5c0 1.66-4 3-9 3S3 6.66 3 5"/>
+                </svg>
+            </div>
+            <h1 class="hero-title">Aprende SQL Gratis (en español!)</h1>
+            <p class="hero-subtitle">Curso de SQL gratis en español</p>
+        </div>
+        <a href="/curso-sql/bienvenida.html" class="btn-hero">
+            <span class="material-icons">play_circle</span>
+            Empezar el curso
+        </a>
+    </section>
+
+    <!-- Qué incluye -->
+    <section class="features-section">
+        <div class="features-header">
+            <h2 class="features-title">Qué incluye el curso</h2>
+            <p class="features-desc">El curso está pensado para que aprendas SQL con lecciones claras y quizzes para fijar conceptos.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M169.64,134.33l44.77-19.46A16,16,0,0,0,213,85.07L52.92,32.8A16,16,0,0,0,32.8,52.92L85.07,213a15.83,15.83,0,0,0,14.41,11l.79,0a15.83,15.83,0,0,0,14.6-9.59h0l19.46-44.77L184,219.31a16,16,0,0,0,22.63,0l12.68-12.68a16,16,0,0,0,0-22.63Zm-69.48,73.76.06-.05Zm95.15-.09-49.66-49.67a16,16,0,0,0-26,4.94l-19.42,44.65L48,48l159.87,52.21-44.64,19.41a16,16,0,0,0-4.94,26L208,195.31Z"/>
+                    </svg>
+                </div>
+                <h2 class="feature-title">Lecciones interactivas</h2>
+                <p>Contenido paso a paso que se adapta a tu ritmo.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/>
+                    </svg>
+                </div>
+                <h2 class="feature-title">Quizzes</h2>
+                <p>Comprueba lo aprendido con tests por módulo.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M208,40H48A16,16,0,0,0,32,56V200a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V56A16,16,0,0,0,208,40Zm0,160H48V56H208V200Zm-35.06-98.83a8,8,0,0,0-11.32,0L96,156.69,78.38,139.06a8,8,0,0,0-11.32,11.32l22.34,22.33a8,8,0,0,0,11.31,0l66.35-66.34A8,8,0,0,0,172.94,101.17Z"/>
+                    </svg>
+                </div>
+                <h2 class="feature-title">100% gratuito</h2>
+                <p>Sin registro ni suscripción. Empieza cuando quieras.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Módulos del curso -->
+    <section id="modules" class="modules-section">
+        <div class="modules-header">
+            <h2 class="modules-title">Módulos del curso</h2>
+            <p class="modules-desc">Recorre los temas en orden para aprender desde cero hasta consultas con agregación y unión de tablas.</p>
+        </div>
+        <div class="module-list">
+            <a href="/curso-sql/bienvenida.html" class="module-item" data-module="bienvenida">
+                <div class="module-icon">
+                    <span class="material-icons">looks_one</span>
+                </div>
+                <div>
+                    <h3>Bienvenida y motivacion del curso</h3>
+                    <p><p>Bienvenida y motivacion del curso.</p></p>
+                </div>
+            </a>
+            <a href="/curso-sql/introduccion-sql.html" class="module-item" data-module="intro">
+                <div class="module-icon">
+                    <span class="material-icons">looks_two</span>
+                </div>
+                <div>
+                    <h3>Introducción a SQL</h3>
+                    <p><p>Qué es SQL y conceptos de bases de datos.</p></p>
+                </div>
+            </a>
+            <a href="/curso-sql/que-es-una-base-de-datos.html" class="module-item" data-module="base-de-datos">
+                <div class="module-icon">
+                    <span class="material-icons">looks_3</span>
+                </div>
+                <div>
+                    <h3>Que es una base de datos?</h3>
+                    <p><p>Que es y tipos de base de datos.</p></p>
+                </div>
+            </a>
+            <a href="/curso-sql/modelo-entidad-relacion.html" class="module-item" data-module="modelo-entidad-relacion">
+                <div class="module-icon">
+                    <span class="material-icons">looks_4</span>
+                </div>
+                <div>
+                    <h3>Modelo Entidad-Relacion</h3>
+                    <p><p>Aprende que es el modelo entidad-relacion de bases de datos.</p></p>
+                </div>
+            </a>
+            <a href="/curso-sql/consultas-select.html" class="module-item" data-module="querying">
+                <div class="module-icon">
+                    <span class="material-icons">looks_5</span>
+                </div>
+                <div>
+                    <h3>Consultas (SELECT)</h3>
+                    <p><p>Consultas básicas y recuperación de datos.</p></p>
+                </div>
+            </a>
+            <a href="/curso-sql/filtrar-datos-where.html" class="module-item" data-module="filtering">
+                <div class="module-icon">
+                    <span class="material-icons">looks_one</span>
+                </div>
+                <div>
+                    <h3>Filtros (WHERE)</h3>
+                    <p><p>Cláusula WHERE y filtrado avanzado.</p></p>
+                </div>
+            </a>
+            <a href="/curso-sql/ordenar-datos-order-by.html" class="module-item" data-module="filtering">
+                <div class="module-icon">
+                    <span class="material-icons">looks_two</span>
+                </div>
+                <div>
+                    <h3>Ordenación (ORDER BY)</h3>
+                    <p><p>Ordena datos con la cláusula ORDER BY.</p></p>
+                </div>
+            </a>
+            <a href="/curso-sql/tipos-join-sql.html" class="module-item" data-module="joins">
+                <div class="module-icon">
+                    <span class="material-icons">looks_3</span>
+                </div>
+                <div>
+                    <h3>Unión de tablas (JOIN)</h3>
+                    <p><p>Combinar datos de varias tablas.</p></p>
+                </div>
+            </a>
+            <a href="/curso-sql/agregaciones-agrupaciones-group-by.html" class="module-item" data-module="aggregating">
+                <div class="module-icon">
+                    <span class="material-icons">looks_4</span>
+                </div>
+                <div>
+                    <h3>Agregación (GROUP BY)</h3>
+                    <p><p>GROUP BY y funciones de agregación.</p></p>
+                </div>
             </a>
         </div>
-        <p class="description">
-            <strong><span class="learn-consulta-example">Aprende SQL</span>:</strong> aprendersql.com es un curso guiado gratuito de SQL. Este <strong>curso de sql</strong> para principiantes esta pensado para que aprendas este lenguaje de consulta de bases de datos <strong>desde cero</strong> paso a paso y con <strong>ejemplos</strong>. Tambien puedes consultar nuestro <strong>manual de referencia</strong>.
-        </p>
-       </header>
-
-    <section class="features">
-        <div class="feature">
-            <i class="fas fa-graduation-cap feature-icon fa-4x"></i>
-            <h2>Curso SQL</h2>
-            <p>Aprende SQL desde cero con nuestro curso guiado y ejemplos prácticos paso a paso.</p>
-            <a href="/curso-sql/" class="btn">Ir al Curso de SQL Gratis →</a>
+        <div class="modules-footer">
+            <a href="/curso-sql/bienvenida.html" class="btn-hero">
+                Empezar por el módulo 1
+                <span class="material-icons">arrow_forward</span>
+            </a>
         </div>
-        
     </section>
-    
-    <!--<footer class="footer">-->
-    <footer class="">
-        <div class="footer-bottom">
-          <p>© 2024 AprenderSQL. Todos los derechos reservados. | <a href="/privacidad/">Política de Privacidad</a></p>
-        </div>
-      </footer>
 
-<!-- 100% privacy-first analytics -->
+    <!-- Instructor -->
+    <section id="instructor" class="section-card">
+        <h2 class="section-title">Instructor</h2>
+        <div class="author-section">
+            <div class="author-avatar">
+                <img src="theme/images/perfil.jpeg" alt="Adrian Rodriguez">
+            </div>
+            <div class="author-info">
+                <h3>Adrian Rodriguez</h3>
+                <p>Ayudo a negocios a tomar mejores decisiones con soluciones data driven de alto impacto | +10 años de experiencia en data | Senior Data Analyst, Data Engineer</p>
+                <br>
+                <p>Imparto este curso gratuito para que puedas aprender SQL desde cero. Si te resulta útil, compártelo.</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+        </main>
+
+        <footer class="site-footer">
+            <p>© 2025 Aprender SQL. Aprende SQL de forma interactiva. <a href="/privacidad/">Política de privacidad</a></p>
+        </footer>
+    </div>
+    <script src="/theme/js/contenido.js?v=2"></script>
+    <script src="/theme/js/script.js"></script>
+    <!-- 100% privacy-first analytics -->
 <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,237 +1,208 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" as="style" onload="this.rel='stylesheet'">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leccion 7 - Filtrar datos con WHERE | aprendersql.com</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="stylesheet" href="/assets/css/lessons.css">
-    
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Título dinámico -->
+    <title>Filtros (WHERE) | Aprender SQL</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/styles.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" />
 
-<!-- Meta Description -->
-<meta name="description" content="Descubre cómo filtrar datos en tus consultas para obtener resultados más precisos y relevantes.">
-
-<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
-<link rel="canonical" href="https://aprendersql.com/curso-sql/filtrar-datos-where.html">
-<link rel="image_src" href="/assets/img/aprendersql.png">
-
-<!-- Open Graph Meta Tags -->
-<meta property="og:title" content="Leccion 7 - Filtrar datos con WHERE">
-<meta property="og:description" content="Descubre cómo filtrar datos en tus consultas para obtener resultados más precisos y relevantes.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://aprendersql.com/curso-sql/filtrar-datos-where">
-<meta property="og:image" content="https://aprendersql.com/assets/img/aprendersql.png">
-
-<!-- Twitter Card Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Leccion 7 - Filtrar datos con WHERE">
-<meta name="twitter:description" content="Descubre cómo filtrar datos en tus consultas para obtener resultados más precisos y relevantes.">
-<meta name="twitter:image" content="https://aprendersql.com/assets/img/aprendersql.png">
-
-
-  
-
-  </head>
+<link rel="canonical" href="/curso-sql/filtrar-datos-where.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Filtros (WHERE)", "description": "Cláusula WHERE y filtrado avanzado.", "author": {"@type": "Person", "name": "Adrian Rodriguez"}, "datePublished": "2025-01-03T10:00:00+01:00", "dateModified": "2025-08-03T10:00:00+01:00", "mainEntityOfPage": {"@type": "WebPage", "@id": "/curso-sql/filtrar-datos-where.html"}}</script>
+</head>
 <body>
-    <header class="header">
-    <div class="logo">
-        <a href="/" class="logo-container">
-            <img src="/assets/img/logoazul.png" alt="Logo" class="logo-icon">
-            <p class="logo-text">AprenderSQL<span>.com</span></p>
-        </a>
-    </div>
-    <p class="description">
-        <strong><span class="learn-consulta-example">Aprende SQL</span>:</strong> aprendersql.com es un curso guiado gratuito de SQL. Este <strong>curso de sql</strong> para principiantes esta pensado para que aprendas este lenguaje de consulta de bases de datos <strong>desde cero</strong> paso a paso y con <strong>ejemplos</strong>. Tambien puedes consultar nuestro <strong>manual de referencia</strong>.
-    </p>
-   
-    
-       
-</header>
+    <div class="page-wrap">
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a href="/" class="site-logo" aria-label="Inicio">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                        <path d="M21 5c0 1.66-4 3-9 3S3 6.66 3 5"/>
+                    </svg>
+                </a>
+                <span class="site-title">aprendersql.com</span>
+            </div>
+            <nav class="site-nav">
+                <a href="/#modules">Módulos</a>
+            </nav>
+            <button class="menu-btn" id="menuButton" aria-label="Menú">
+                <span class="material-icons">menu</span>
+            </button>
+        </header>
 
+        <main class="site-main">
+<div class="layout-content-container">
+    <nav class="breadcrumb">
+        <a href="/">← Volver al curso</a>
+        <span class="breadcrumb-sep">|</span>
+        <a href="/curso-sql/ordenar-datos-order-by.html" class="breadcrumb-next">Siguiente módulo: Ordenación (ORDER BY) →</a>
+    </nav>
 
-    <main>
-        <script>
-    const exercises = [
+    <article class="article-card">
+        <header>
+            <h1>Filtros (WHERE)</h1>
+            <div class="article-meta">
+                <time datetime="2025-01-03T10:00:00+01:00">Fri 03 January 2025</time>
+                <span class="article-author-link">Adrian Rodriguez</span>
+            </div>
+        </header>
+        <div class="article-content">
+            <p>A la hora de realizar nuestras consultas es fundamental saber poder filtrar, en analisis de datos especialmente.</p>
+<p>Muchas veces ocurre que solo necesitamos extraer un conjunto de datos de una tabla, o tambien por ejemplo nos viene dada una condicion de restringir los resultados a unos determinados valores, por ejemplo, dada una tabla con datos de ordenes de ventas, comprobar cuanto fue la suma de las ventas en el mes anterior.</p>
+<h2>Filtrar datos con WHERE</h2>
+<p>Para poder filtrar datos de nuestras tablas usaremos el comando WHERE. Con esta 'clause' de SQL podremos indicar que valores queremos que nos devuelva nuestra consulta. Asi por ejemplo, imagina que tenemos una tabla Empleados con campos IdEmpleado, Nombre, Apellidos, Email, Telefono, FechaIngreso, Departamento y Salario. Esta tabla contiene datos de todas los empleados de la empresa, pero nuestro requisito es saber cuantos empleados se llaman Juan. Para ello, a modo de ejemplo, utilizaremos el siguiente codigo,</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Empleados</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">Nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Juan&#39;</span>
+</code></pre></div>
 
-];
-</script>
-<div class="exercise-container">
-    <a href="/curso-sql/">← Lecciones</a>
-    <section class="lesson">
-        <h1>Leccion 7 - Filtrar datos con WHERE</h1>
-        
-
-<p>Tiempo estimado de lectura: 7 minutos</p>
-        <div class="lesson-content">
-            <p>A la hora de realizar nuestras consultas es fundamental saber poder filtrar, en analisis de datos especialmente. Muchas veces ocurre que solo necesitamos extraer un conjunto de datos de una tabla, o tambien por ejemplo nos viene dada una condicion de restringir los resultados a unos determinados valores, por ejemplo, dada una tabla con datos de ordenes de ventas, comprobar cuanto fue la suma de las ventas en el mes anterior.</p>
-
-<h2 id="filtrar-datos-con-where">Filtrar datos con WHERE</h2>
-
-<p>Para poder filtrar datos de nuestras tablas usaremos el comando <code class="language-plaintext highlighter-rouge">WHERE</code>. Con esta ‘clause’ de SQL podremos indicar que valores queremos que nos devuelva nuestra consulta. Asi por ejemplo, imagina que tenemos una tabla Empleados con campos IdEmpleado, Nombre, Apellidos, Email, Telefono, FechaIngreso, Departamento y Salario. Esta tabla contiene datos de todas los empleados de la empresa, pero nuestro requisito es saber cuantos empleados se llaman Juan. Para ello, a modo de ejemplo, utilizaremos el siguiente codigo,</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span> <span class="n">Empleados</span>
-<span class="k">WHERE</span> <span class="n">Nombre</span> <span class="o">=</span> <span class="s1">'Juan'</span>
-</code></pre></div></div>
-
-<p>Con el codigo anterior lo que haremos es, leer datos de la tabla Empleados, obteniendo los datos de todas las columnas indicado por el simbolo star *, pero solo de aquellos empleados que se llamen Juan. FIjate que la restriccion que hemos puesto es <code class="language-plaintext highlighter-rouge">WHERE Nombre = 'Juan'</code>. Esto es asi, de manera que a continuacion de la cláusula WHERE hemos indicado el nombre del campo por el que queremos restringir los valores de la tabla, en este caso Nombre, y que se cumpla que los valores del campo Nombre sean iguales a Juan. El simbolo <code class="language-plaintext highlighter-rouge">=</code> indica que el campo ha de coincidir con el valor de Juan. En este caso Juan es una cadena (conjunto de caracteres).</p>
-
+<p>Con el codigo anterior lo que haremos es, leer datos de la tabla Empleados, obteniendo los datos de todas las columnas indicado por el simbolo star *, pero solo de aquellos empleados que se llamen Juan.</p>
+<p>FIjate que la restriccion que hemos puesto es WHERE Nombre = 'Juan'. Esto es asi, de manera que a continuacion de la cláusula WHERE hemos indicado el nombre del campo por el que queremos restringir los valores de la tabla, en este caso Nombre, y que se cumpla que los valores del campo Nombre sean iguales a Juan. El simbolo = indica que el campo ha de coincidir con el valor de Juan. En este caso Juan es una cadena (conjunto de caracteres).</p>
 <p>Las cadenas en SQL se indican con comillas simples igual que en el ejemplo anterior.</p>
-
 <p>Si hubieramos querido filtrar por un campo numerico como Salario, en este caso los valores numericos no se indican encerrados por comillas simples. Por ejemplo,</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Empleados</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">Salario</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1000</span>
+</code></pre></div>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span> <span class="n">Empleados</span>
-<span class="k">WHERE</span> <span class="n">Salario</span> <span class="o">&gt;</span> <span class="mi">1000</span> 
-</code></pre></div></div>
-
-<p>En este caso nuestra consulta devuelve los datos de la tabla Empleados cuyo Salario es mayor a 1000. Date cuenta que hemos utilizado el simbolo <code class="language-plaintext highlighter-rouge">&gt;</code>, esto quiere decir que el valor de Salario debe ser mayor a 1000, si hubieramos querido indicar un salario mayor o igual a 1000, lo hubieramos expresado de la siguiente manera.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
-<span class="n">Empleados</span> 
-<span class="k">WHERE</span> <span class="n">Salario</span> <span class="o">&gt;=</span> <span class="mi">1000</span> 
-</code></pre></div></div>
+<p>En este caso nuestra consulta devuelve los datos de la tabla Empleados cuyo Salario es mayor a 1000. Date cuenta que hemos utilizado el simbolo &gt;, esto quiere decir que el valor de Salario debe ser mayor a 1000, si hubieramos querido indicar un salario mayor o igual a 1000, lo hubieramos expresado de la siguiente manera.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Empleados</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">Salario</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1000</span>
+</code></pre></div>
 
 <p>En el caso de que hubieramos querido obtener los datos de los empleados con salarios inferiores a 1000, podriamos utilizar la siguiente query.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span> <span class="n">Empleados</span> 
-<span class="k">WHERE</span> <span class="n">Salario</span> <span class="o">&lt;</span> <span class="mi">1000</span> 
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Empleados</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">Salario</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1000</span>
+</code></pre></div>
 
 <p>Si hubieramos querido saber los datos de los empleados que hubieran ingresado en la empresa a partir de una determinada fecha, por ejemplo Enero de 2022, para ello podriamos utilizar la siguiente consulta.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span> <span class="n">Empleados</span> 
-<span class="k">WHERE</span> <span class="n">FechaIngreso</span> <span class="o">&gt;=</span> <span class="s1">'2022-01-01'</span>
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Empleados</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">FechaIngreso</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s1">&#39;2022-01-01&#39;</span>
+</code></pre></div>
 
 <p>Con la consulta anterior indicamos el dia a partir del cual la FechaIngreso se cumple que fue a partir del dia 1 de Enero de 2022, incluido este mismo dia. El campo FechaIngreso en este caso seria de tipo DATE con formato YYYY-MM-DD, donde YYYY es el año, MM el mes y DD el dia.</p>
-
 <p>Pero y que pasa por ejemplo los datos de los empleados que ganen mas de 1000 y se llamen Juan?. Esto lo vamos a ver en el siguiente apartado.</p>
-
-<h2 id="condiciones-de-filtrado-con-andor">Condiciones de filtrado con AND/OR</h2>
-
-<h3 id="uso-de-and">Uso de AND</h3>
-
+<h2>Condiciones de filtrado con AND/OR</h2>
+<h3>Uso de AND</h3>
 <p>Normalmente el uso de condiciones en nuestras consultas va mas alla de poder filtrar por un solo campo, por ejemplo, podriamos querer saber los datos de la tabla Empleados donde el nombre del empleado sea Juan y cuyo salario sea superior a 1000. En este caso estaremos haciendo uso de la combinacion de dos condiciones, en las que ambas se han de cumplir para que obtener estos datos. Siguiendo nuestro ejemplo el codigo que debemos utilizar seria asi.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Empleados</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">Nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Juan&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Salario</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1000</span>
+</code></pre></div>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span> <span class="n">Empleados</span>
-<span class="k">WHERE</span> <span class="n">Nombre</span> <span class="o">=</span> <span class="s1">'Juan'</span> <span class="k">AND</span> <span class="n">Salario</span> <span class="o">&gt;</span> <span class="mi">1000</span>
-</code></pre></div></div>
+<p>¿Te has fijado? Para combinar ambas condiciones hemos utilizado la palabra clave AND, esto indica que los datos que nos devolvera nuestra consulta seran aquellos para los que se cumplen ambas condiciones de Nombre = 'Juan' y Salario &gt; 1000. Es decir, empleados que se llamen Juan y con un salario superior a 1000. No obtendremos datos para Pedros o Marias ni salarios por debajo o igual a 1000, si no superior a esta cantidad.</p>
+<p>Pero y que ocurre si lo que queremos por ejemplo es obtener los datos de los Empleados cuyo nombre no sea Juan. Para ello simplemente tendremos que utilizar el simbolo &lt;&gt;, esto quiere decir distinto. En nuestro caso nuestra consulta quedaria asi,</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Empleados</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">Juan</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;Juan&#39;</span>
+</code></pre></div>
 
-<p>¿Te has fijado? Para combinar ambas condiciones hemos utilizado la palabra clave <code class="language-plaintext highlighter-rouge">AND</code>, esto indica que los datos que nos devolvera nuestra consulta seran aquellos para los que se cumplen ambas condiciones de Nombre = ‘Juan’ y Salario &gt; 1000. Es decir, empleados que se llamen Juan y con un salario superior a 1000. No obtendremos datos para Pedros o Marias ni salarios por debajo o igual a 1000, si no superior a esta cantidad.</p>
-
-<p>Pero y que ocurre si lo que queremos por ejemplo es obtener los datos de los Empleados cuyo nombre no sea Juan. Para ello simplemente tendremos que utilizar el simbolo <code class="language-plaintext highlighter-rouge">&lt;&gt;</code>, esto quiere decir distinto. En nuestro caso nuestra consulta quedaria asi,</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span> <span class="n">Empleados</span> 
-<span class="k">WHERE</span> <span class="n">Juan</span> <span class="o">&lt;&gt;</span> <span class="s1">'Juan'</span> 
-</code></pre></div></div>
-
-<h3 id="uso-de-or">Uso de OR</h3>
-
-<p>Siguiendo con el ejemplo anterior, imagina que nuestro jefe nos pregunta si podemos proporcionar un informe con los datos de los empleados que se llamen Juan o Maria. Hasta ahora solo hemos visto la condicion de que el nombre del empleado sea igual a un valor. pero si lo queremos es poder emplear en nuestra consulta dos condiciones en la que ambas pueden ser ciertas, para ello empleamos la palabra clave <code class="language-plaintext highlighter-rouge">OR</code>.</p>
-
+<h3>Uso de OR</h3>
+<p>Siguiendo con el ejemplo anterior, imagina que nuestro jefe nos pregunta si podemos proporcionar un informe con los datos de los empleados que se llamen Juan o Maria. Hasta ahora solo hemos visto la condicion de que el nombre del empleado sea igual a un valor. pero si lo que queremos es poder emplear en nuestra consulta dos condiciones en la que ambas pueden ser ciertas, para ello empleamos la palabra clave OR.</p>
 <p>Siguiendo el ejemplo, en nuestra caso el codigo de nuestra consulta quedaria asi,</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Empleados</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">Nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Juan&#39;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Maria&#39;</span>
+</code></pre></div>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span> <span class="n">Empleados</span>
-<span class="k">WHERE</span> <span class="n">Nombre</span> <span class="o">=</span> <span class="s1">'Juan'</span> <span class="k">OR</span> <span class="n">Nombre</span> <span class="o">=</span> <span class="s1">'Maria'</span>
-</code></pre></div></div>
-
-<h2 id="uso-de-in">Uso de IN</h2>
-
-<p>Pero ocurre una cosa, y es que tener que repetir el nombre del campo para indicar la condicion de restricción de nuestra consulta puede llegar a ser un poco tedioso, puede que incluso no solo tengamos dos valores por los que filtrar, estos podrian llegar a ser 20, o incluso 30 valores diferentes. En estos casos cuando queremos filtrar un campo por uno o mas valores tambien podemos emplear la palabra clave <code class="language-plaintext highlighter-rouge">IN</code>.</p>
-
+<h3>Uso de IN</h3>
+<p>Pero ocurre una cosa, y es que tener que repetir el nombre del campo para indicar la condicion de restricción de nuestra consulta puede llegar a ser un poco tedioso, puede que incluso no solo tengamos dos valores por los que filtrar, estos podrian llegar a ser 20, o incluso 30 valores diferentes. En estos casos cuando queremos filtrar un campo por uno o mas valores tambien podemos emplear la palabra clave IN.</p>
 <p>La manera de utilizar IN en nuestro ejemplo seria la siguiente.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span> <span class="n">Empleados</span> 
-<span class="k">WHERE</span> <span class="n">Nombre</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'Juan'</span><span class="p">,</span><span class="s1">'Maria'</span><span class="p">)</span>
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Empleados</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">Nombre</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Juan&#39;</span><span class="p">,</span><span class="s1">&#39;Maria&#39;</span><span class="p">)</span>
+</code></pre></div>
 
 <p>En este caso indicamos la condicion de que el valor del campo Nombre ha de ser Juan o Maria, indicado por los valores entre parentesis separados por comas.</p>
-
-<h2 id="multiples-condiciones">Multiples condiciones</h2>
-
+<h3>Multiples condiciones</h3>
 <p>El uso de AND o OR no se limita a que solo aparezcan una sola vez en el WHERE de la consulta, dado que puedes tener varias condiciones que han de cumplir los datos. En este caso usaremos AND tantas veces como sea necesario. Asi por ejemplo, si queremos saber los Empleados que se llamen Juan , ganen mas de 1000 y trabajen en el departamento de Ventas, para ello utilizaremos la siguiente consulta.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span> <span class="n">Empleados</span>
-<span class="k">WHERE</span> <span class="n">Nombre</span> <span class="o">=</span> <span class="s1">'Juan'</span> <span class="k">AND</span> <span class="n">Salario</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="k">AND</span> <span class="n">Departamento</span> <span class="o">=</span> <span class="s1">'Ventas'</span> 
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Empleados</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">Nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Juan&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Salario</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Departamento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Ventas&#39;</span>
+</code></pre></div>
 
 <p>Piensa que con OR funciona de la misma manera cuando tenemos varias condiciones. Ahora bien, que ocurre si tenemos un par de condiciones en el que ambas (AND) se han de cumplir pero incluimos otra condicion por la que tambien obtener nuestros datos pero independiente de las dos primeras (OR). En estos casos hemos de incluir entre paréntesis nuestras condiciones. Un ejemplo de codigo de lo que estamos hablando seria el siguiente.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span> <span class="n">Empleados</span>
-<span class="k">WHERE</span> <span class="p">(</span><span class="n">Nombre</span> <span class="o">=</span> <span class="s1">'Juan'</span> <span class="k">AND</span> <span class="n">Salario</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">)</span> <span class="k">OR</span> <span class="n">Departamento</span> <span class="o">=</span> <span class="s1">'Ventas'</span> 
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Empleados</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="p">(</span><span class="n">Nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Juan&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Salario</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1000</span><span class="p">)</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Departamento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Ventas&#39;</span>
+</code></pre></div>
 
 <p>En este caso, aunque a priori no tenga mucho sentido, la consulta nos devolvera los datos de la tabla Empleados en los que el empleado se llame Juan y tenga un salario superior a 1000 pero tambien nos devolvera aquellos registros de empleados que trabajen en el departamento de Ventas independientemente de que se llamen Juan o ganen mas de 1000. Esta consulta que hemos puesto de ejemplo a priori no tiene mucho sentido desde un punto de vista del dia a dia, pero simplemente es para mostrar como podemos emplear varias condiciones a la vez.</p>
-
-
+<h2>Lista de operadores habituales</h2>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>=</code></td>
+<td>Igual</td>
+</tr>
+<tr>
+<td><code>&lt;&gt;</code> o <code>!=</code></td>
+<td>Distinto</td>
+</tr>
+<tr>
+<td><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td>
+<td>Menor, mayor, etc.</td>
+</tr>
+<tr>
+<td><code>AND</code></td>
+<td>Las dos condiciones</td>
+</tr>
+<tr>
+<td><code>OR</code></td>
+<td>Una u otra condición</td>
+</tr>
+<tr>
+<td><code>IN (a, b, c)</code></td>
+<td>Valor en la lista</td>
+</tr>
+<tr>
+<td><code>BETWEEN x AND y</code></td>
+<td>Entre dos valores</td>
+</tr>
+<tr>
+<td><code>LIKE 'patrón'</code></td>
+<td>Coincide con un patrón (ej. <code>%</code> = cualquier texto)</td>
+</tr>
+</tbody>
+</table>
         </div>
-    
+    </article>
+
+    <section id="quiz-section" class="quiz-section" data-module-key="filtering" data-next-url="/curso-sql/ordenar-datos-order-by.html" data-next-title="Ordenación (ORDER BY)">
+        <h2>Quiz del módulo</h2>
+        <script type="application/json" id="quiz-data">[{"question": "¿Qué cláusula se usa para filtrar filas en una consulta?", "options": ["FILTER", "WHERE", "HAVING", "IF"], "correct": 1}, {"question": "¿Qué operador significa 'distinto' en SQL?", "options": ["!=", "<>", "Ambos <> e !=", "DISTINCT"], "correct": 2}, {"question": "Para que se cumplan dos condiciones a la vez usamos:", "options": ["OR", "AND", "IN", "BETWEEN"], "correct": 1}, {"question": "¿Cuál sirve para filtrar por varios valores posibles de un campo?", "options": ["BETWEEN", "LIKE", "IN", "AND"], "correct": 2}]</script>
+        <script type="application/json" id="quiz-title">"Filtros (WHERE)"</script>
+        <div id="quiz-container"></div>
     </section>
 
-    
-  <div class="next-post">
-    <p>Siguiente lección: <a href="/curso-sql/ordenar-datos-order-by">Leccion 8 - Ordenar datos con ORDER BY</a></p>
-  </div>
-
-
-
-                <!--<p>No hay ejercicios disponibles para esta lección.</p>-->
-            </section>
-        
-
+    <nav class="article-nav-bottom">
+        <a href="/curso-sql/ordenar-datos-order-by.html" class="link-next-module">Siguiente módulo: Ordenación (ORDER BY) →</a>
+    </nav>
 </div>
+        </main>
 
-<!---
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.2.1/dist/sql-wasm-debug.js" crossorigin="anonymous"></script>
-<script src="/assets/js/sql.js"></script>   
-<script src="/assets/js/editor.js"></script>   
--->
-
-    </main>
-          <!--<footer class="footer">-->
-    <footer class="">
-        <!--
-    <div class="footer-container">
-      <div class="footer-about">
-        <h2>AprenderSQL</h2>
-        <p>Tu recurso en español para aprender SQL desde cero. Domina el lenguaje de bases de datos.</p>
-      </div>
-  
-      <div class="footer-links">
-        <h3>Enlaces Útiles</h3>
-        <ul>
-          <li><a href="/curso-sql">Curso SQL</a></li>
-          <li><a href="/referencia-sql">Manual de Referencia</a></li>
-          <li><a href="/comunidad">Comunidad</a></li>
-        </ul>
-      </div>
-  
-      <div class="footer-social">
-        <h3>Síguenos</h3>
-        <ul>
-          <li><a href="https://linkedin.com/company/aprendersql" target="_blank">LinkedIn</a></li>
-        </ul>
-      </div>
+        <footer class="site-footer">
+            <p>© 2025 Aprender SQL. Aprende SQL de forma interactiva. <a href="/privacidad/">Política de privacidad</a></p>
+        </footer>
     </div>
--->      
-    <div class="footer-bottom">
-      <p>© 2024 AprenderSQL. Todos los derechos reservados. | <a href="/privacidad/">Política de Privacidad</a></p>
-    </div>
-  </footer>
-
+    <script src="/theme/js/contenido.js?v=2"></script>
+    <script src="/theme/js/script.js"></script>
     <!-- 100% privacy-first analytics -->
 <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+
 
 </body>
 </html>

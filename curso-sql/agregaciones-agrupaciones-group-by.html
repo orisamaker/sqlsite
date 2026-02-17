@@ -1,226 +1,154 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" as="style" onload="this.rel='stylesheet'">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leccion 10 - Agregaciones y agrupaciones con GROUP BY | aprendersql.com</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="stylesheet" href="/assets/css/lessons.css">
-    
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Título dinámico -->
+    <title>Agregación (GROUP BY) | Aprender SQL</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/styles.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" />
 
-<!-- Meta Description -->
-<meta name="description" content="Aprende a realizar cálculos como sumas y promedios mientras agrupas tus datos para análisis más detallados.">
-
-<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
-<link rel="canonical" href="https://aprendersql.com/curso-sql/agregaciones-agrupaciones-group-by.html">
-<link rel="image_src" href="/assets/img/aprendersql.png">
-
-<!-- Open Graph Meta Tags -->
-<meta property="og:title" content="Leccion 10 - Agregaciones y agrupaciones con GROUP BY">
-<meta property="og:description" content="Aprende a realizar cálculos como sumas y promedios mientras agrupas tus datos para análisis más detallados.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://aprendersql.com/curso-sql/agregaciones-agrupaciones-group-by">
-<meta property="og:image" content="https://aprendersql.com/assets/img/aprendersql.png">
-
-<!-- Twitter Card Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Leccion 10 - Agregaciones y agrupaciones con GROUP BY">
-<meta name="twitter:description" content="Aprende a realizar cálculos como sumas y promedios mientras agrupas tus datos para análisis más detallados.">
-<meta name="twitter:image" content="https://aprendersql.com/assets/img/aprendersql.png">
-
-
-
-
-  </head>
+<link rel="canonical" href="/curso-sql/agregaciones-agrupaciones-group-by.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Agregación (GROUP BY)", "description": "GROUP BY y funciones de agregación.", "author": {"@type": "Person", "name": "Adrian Rodriguez"}, "datePublished": "2025-01-05T10:00:00+01:00", "dateModified": "2025-08-05T10:00:00+01:00", "mainEntityOfPage": {"@type": "WebPage", "@id": "/curso-sql/agregaciones-agrupaciones-group-by.html"}}</script>
+</head>
 <body>
-    <header class="header">
-    <div class="logo">
-        <a href="/" class="logo-container">
-            <img src="/assets/img/logoazul.png" alt="Logo" class="logo-icon">
-            <p class="logo-text">AprenderSQL<span>.com</span></p>
-        </a>
-    </div>
-    <p class="description">
-        <strong><span class="learn-consulta-example">Aprende SQL</span>:</strong> aprendersql.com es un curso guiado gratuito de SQL. Este <strong>curso de sql</strong> para principiantes esta pensado para que aprendas este lenguaje de consulta de bases de datos <strong>desde cero</strong> paso a paso y con <strong>ejemplos</strong>. Tambien puedes consultar nuestro <strong>manual de referencia</strong>.
-    </p>
-   
-    
-</header>
+    <div class="page-wrap">
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a href="/" class="site-logo" aria-label="Inicio">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                        <path d="M21 5c0 1.66-4 3-9 3S3 6.66 3 5"/>
+                    </svg>
+                </a>
+                <span class="site-title">aprendersql.com</span>
+            </div>
+            <nav class="site-nav">
+                <a href="/#modules">Módulos</a>
+            </nav>
+            <button class="menu-btn" id="menuButton" aria-label="Menú">
+                <span class="material-icons">menu</span>
+            </button>
+        </header>
 
+        <main class="site-main">
+<div class="layout-content-container">
+    <nav class="breadcrumb">
+        <a href="/">← Volver al curso</a>
+    </nav>
 
-    <main>
-        <script>
-    const exercises = [
-
-];
-</script>
-<div class="exercise-container">
-    <a href="/curso-sql/">← Lecciones</a>
-    <section class="lesson">
-        <h1>Leccion 10 - Agregaciones y agrupaciones con GROUP BY</h1>
-        
-
-<p>Tiempo estimado de lectura: 6 minutos</p>
-        <div class="lesson-content">
+    <article class="article-card">
+        <header>
+            <h1>Agregación (GROUP BY)</h1>
+            <div class="article-meta">
+                <time datetime="2025-01-05T10:00:00+01:00">Sun 05 January 2025</time>
+                <span class="article-author-link">Adrian Rodriguez</span>
+            </div>
+        </header>
+        <div class="article-content">
             <p>Con SQL podemos no solo listar datos de una tabla, tambien podemos agregar resultados. Esto significa, que podemos calcular sumas, maximos y minimos entre otro tipo de operaciones en el tiempo que consultamos datos con SELECT.</p>
-
-<h2 id="agregaciones">Agregaciones</h2>
+<h2>Agregaciones</h2>
 <p>Imagina que tenemos una tabla de Ventas con campos IdVenta, IdCliente, IdProducto, Cantidad e Importe. Supongamos que queremos calcular el total del importe de las ventas. La manera de obtener la suma del importe sobre la tabla Ventas seria la siguiente.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">Importe</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">Ventas</span>
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">Importe</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Ventas</span>
+</code></pre></div>
 
 <p>El resultado seria el valor total del importe de las ventas. Facil verdad?</p>
-
-<p>En SQL a la hora de hacer calculos podemos utilizar ademas de <code class="language-plaintext highlighter-rouge">SUM()</code>, otras funciones como <code class="language-plaintext highlighter-rouge">COUNT()</code>, <code class="language-plaintext highlighter-rouge">MIN()</code>, <code class="language-plaintext highlighter-rouge">MAX()</code>, <code class="language-plaintext highlighter-rouge">AVG()</code>. Estas serian las funciones de agregaciones mas basicas.</p>
-
+<p>En SQL a la hora de hacer calculos podemos utilizar ademas de SUM(), otras funciones como COUNT(), MIN(), MAX(), AVG(). Estas serian las funciones de agregaciones mas basicas.</p>
 <p>Asi,</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">IdVenta</span><span class="p">)</span> 
-<span class="k">FROM</span> <span class="n">Ventas</span>
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">IdVenta</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Ventas</span>
+</code></pre></div>
 
 <p>Nos devolveria el valor del numero de total de ventas, contando asi el numero de registros de cada venta realizada.</p>
-
 <p>La consulta,</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">Importe</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">Ventas</span>
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">Importe</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Ventas</span>
+</code></pre></div>
 
 <p>Calcularia la suma del importe total sobre las ventas. Fijate en que esta vez indicamos el la funcion SUM() el campo Importe, el cual es la columna que proporciona los valores de los importes realizados,</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">MAX</span><span class="p">(</span><span class="n">Importe</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">Ventas</span>
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">Importe</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Ventas</span>
+</code></pre></div>
 
 <p>La consulta anterior nos proporciona el valor del importe maximo de las ventas realizadas. Asi al contrario,</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">MIN</span><span class="p">(</span><span class="n">Importe</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">Ventas</span>
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">Importe</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Ventas</span>
+</code></pre></div>
 
 <p>Nos devolveria el valor del importe minimo de las ventas realizadas.</p>
-
 <p>Si lo que queremos calcular es la media de los importes de las ventas podemos utilizar AVG(). Por ejemplo,</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Importe</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Ventas</span>
+</code></pre></div>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">Importe</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">Ventas</span>
-</code></pre></div></div>
-
-<h2 id="group-by">GROUP BY</h2>
-
+<h2>GROUP BY</h2>
 <p>Ahora te planteo lo siguiente, imagina quisieras saber cual es el producto que genera mas ventas, tanto en numero de ventas como en importe. Seria una pregunta muy interesante para un responsable de marketing. Para ello podemos agregar los resultados de COUNT y SUM a nivel de producto. Con SQL esto se hace de manera que añadirmos el campo del producto, de momento solo quedate con que en la tabla de ejemplo que venimos viendo en las lecciones, Ventas, tiene el campo IdProducto. Con lo siguiente obtendremos los resultados para la pregunta de negocio que hemos planteado.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">IdProducto</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">IdVenta</span><span class="p">)</span> <span class="k">AS</span> <span class="n">NumeroDeVentas</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">Importe</span><span class="p">)</span> <span class="k">AS</span> <span class="n">ImporteTotalVentas</span>
-<span class="k">FROM</span> <span class="n">Ventas</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">IdProducto</span> 
-</code></pre></div></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">IdProducto</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">IdVenta</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">NumeroDeVentas</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">Importe</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ImporteTotalVentas</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Ventas</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">IdProducto</span>
+</code></pre></div>
 
 <p>Fijate que hemos añadido el campo IdProducto tanto en el select como a continuacion de la clausula GROUP BY. GROUP BY sirve para indicar en nuestra consulta cuales son los campos por los que queremos agrupar los resultados.</p>
-
-<p>Si quisieramos agrupar ademas de por IdProducto por otros campos mas solo tenemos que añadir estos otros campos en la parte del <code class="language-plaintext highlighter-rouge">SELECT</code>, para seleccionar que campos queremos que nos devuelva la consulta, y en la parte del <code class="language-plaintext highlighter-rouge">GROUP BY</code>.</p>
-
-<p>En la consulta de ejemplo anterior que nos sirve para agrupar el numero de ventas y el importe total de ventas a nivel de IdProducto, en si mismo IdProducto no es muy informativo, si quisieramos saber realmente el nombre del producto tendriamos que ir a la tabla Productos y comprobar el valor del nombre del producto que se corresponde con cada IdProducto. Sin embargo, esto con SQL es muy sencillo, si leiste la leccion anterior donde explicaba el uso de los distintos de <code class="language-plaintext highlighter-rouge">JOIN</code> en SQL, a la hora de agrupar los resultados de una consulta, SQL nos permite poder relacionar los resultados y combinar datos entre las distintas tablas. De esta manera si queremos el nombre del producto en nuestra consulta simplemente tendriamos que hacer JOIN entre las tablas Ventas y Productos e incluir el campo Producto en el SELECT de nuestra consulta. Esto mismo es lo que haria la siguiente consulta.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">b</span><span class="p">.</span><span class="n">Producto</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">IdVenta</span><span class="p">)</span> <span class="k">AS</span> <span class="n">NumeroDeVentas</span> <span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">Importe</span><span class="p">)</span> <span class="n">ImporteTotalVentas</span>
-<span class="k">FROM</span> <span class="n">Ventas</span> <span class="k">AS</span> <span class="n">a</span> 
-<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">Productos</span> <span class="k">AS</span> <span class="n">b</span> <span class="k">ON</span> <span class="n">b</span><span class="p">.</span><span class="n">IdProducto</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">IdProducto</span> 
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">b</span><span class="p">.</span><span class="n">Producto</span> 
-</code></pre></div></div>
+<p>Si quisieramos agrupar ademas de por IdProducto por otros campos mas solo tenemos que añadir estos otros campos en la parte del SELECT, para seleccionar que campos queremos que nos devuelva la consulta, y en la parte del GROUP BY.</p>
+<p>En la consulta de ejemplo anterior que nos sirve para agrupar el numero de ventas y el importe total de ventas a nivel de IdProducto, en si mismo IdProducto no es muy informativo, si quisieramos saber realmente el nombre del producto tendriamos que ir a la tabla Productos y comprobar el valor del nombre del producto que se corresponde con cada IdProducto. Sin embargo, esto con SQL es muy sencillo, si leiste la leccion anterior donde explicaba el uso de los distintos de JOIN en SQL, a la hora de agrupar los resultados de una consulta, SQL nos permite poder relacionar los resultados y combinar datos entre las distintas tablas. De esta manera si queremos el nombre del producto en nuestra consulta simplemente tendriamos que hacer JOIN entre las tablas Ventas y Productos e incluir el campo Producto en el SELECT de nuestra consulta. Esto mismo es lo que haria la siguiente consulta.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">Producto</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">IdVenta</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">NumeroDeVentas</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">Importe</span><span class="p">)</span><span class="w"> </span><span class="n">ImporteTotalVentas</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Ventas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">a</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Productos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">IdProducto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">IdProducto</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">Producto</span>
+</code></pre></div>
 
 <p>Incluso un poco mas alla en el caso de que quisieramos ordenar nuestros datos por los productos que mas ventas han generado, para ello, tambien podemos utilizar ORDER BY en nuestra consulta. Te lo muestro a continuacion.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">Producto</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">IdVenta</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">NumeroDeVentas</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">Importe</span><span class="p">)</span><span class="w"> </span><span class="n">ImporteTotalVentas</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Ventas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">a</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Productos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">IdProducto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">IdProducto</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">Producto</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">IdVenta</span><span class="p">)</span><span class="w"> </span><span class="k">DESC</span>
+</code></pre></div>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">b</span><span class="p">.</span><span class="n">Producto</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">IdVenta</span><span class="p">)</span> <span class="k">AS</span> <span class="n">NumeroDeVentas</span> <span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">Importe</span><span class="p">)</span> <span class="n">ImporteTotalVentas</span>
-<span class="k">FROM</span> <span class="n">Ventas</span> <span class="k">AS</span> <span class="n">a</span> 
-<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">Productos</span> <span class="k">AS</span> <span class="n">b</span> <span class="k">ON</span> <span class="n">b</span><span class="p">.</span><span class="n">IdProducto</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">IdProducto</span> 
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">b</span><span class="p">.</span><span class="n">Producto</span> 
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">IdVenta</span><span class="p">)</span> <span class="k">DESC</span>
-</code></pre></div></div>
+<h2>HAVING</h2>
+<p>Filtrar datos en nuestras agrupaciones con SQL tambien es posible, pero no es lo que estas pensando, cuando vimos la cláusula WHERE aprendistre como filtrar datos, sin embargo esta vez necesitamos hacer algo diferente. Imagina el caso en el que queremos poder obtener el resultado de los productos que han vendido mas de 10 unidades, esto lo podemos hacer en nuestra consulta de la siguiente manera, introducimos la clausula HAVING.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">Producto</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">IdVenta</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">NumeroDeVentas</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">Importe</span><span class="p">)</span><span class="w"> </span><span class="n">ImporteTotalVentas</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Ventas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">a</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Productos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">IdProducto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">IdProducto</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">Producto</span>
+<span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">IdVenta</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span>
+</code></pre></div>
 
-<h2 id="having-by">HAVING BY</h2>
-
-<p>Filtrar datos en nuestras agrupaciones con SQL tambien es posible, pero no es lo que estas pensando, cuando vimos la cláusula WHERE aprendistre como filtrar datos, sin embargo esta vez necesitamos hacer algo diferente. Imagina el caso en el que queremos poder obtener el resultado de los productos que han vendido mas de 10 unidades, esto lo podemos hacer en nuestra consulta de la siguiente manera, introducimos la clausula HAVING BY.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">b</span><span class="p">.</span><span class="n">Producto</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">IdVenta</span><span class="p">)</span> <span class="k">AS</span> <span class="n">NumeroDeVentas</span> <span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">Importe</span><span class="p">)</span> <span class="n">ImporteTotalVentas</span>
-<span class="k">FROM</span> <span class="n">Ventas</span> <span class="k">AS</span> <span class="n">a</span> 
-<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">Productos</span> <span class="k">AS</span> <span class="n">b</span> <span class="k">ON</span> <span class="n">b</span><span class="p">.</span><span class="n">IdProducto</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">IdProducto</span> 
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">b</span><span class="p">.</span><span class="n">Producto</span> 
-<span class="k">HAVING</span> <span class="k">BY</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">IdVenta</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span>
-</code></pre></div></div>
-
-<p>La clave de HAVING BY es que podemos filtrar los datos de la consulta en funcion de las agregaciones, que se aplica a los campos calculados con COUNT, SUM, MIN, MAX, etc. Si lo que quisieramos por otro lado es conocer el numero de ventas y el importe de un producto en concreto debemos utilizar WHERE, por ejemplo.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">b</span><span class="p">.</span><span class="n">Producto</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">IdVenta</span><span class="p">)</span> <span class="k">AS</span> <span class="n">NumeroDeVentas</span> <span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">Importe</span><span class="p">)</span> <span class="n">ImporteTotalVentas</span>
-<span class="k">FROM</span> <span class="n">Ventas</span> <span class="k">AS</span> <span class="n">a</span> 
-<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">Productos</span> <span class="k">AS</span> <span class="n">b</span> <span class="k">ON</span> <span class="n">b</span><span class="p">.</span><span class="n">IdProducto</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">IdProducto</span> 
-<span class="k">WHERE</span> <span class="n">b</span><span class="p">.</span><span class="n">Producto</span> <span class="o">=</span> <span class="s1">'TV'</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">b</span><span class="p">.</span><span class="n">Producto</span> 
-</code></pre></div></div>
+<p>La clave de HAVING es que podemos filtrar los datos de la consulta en funcion de las agregaciones, que se aplica a los campos calculados con COUNT, SUM, MIN, MAX, etc. Si lo que quisieramos por otro lado es conocer el numero de ventas y el importe de un producto en concreto debemos utilizar WHERE, por ejemplo.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">Producto</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">IdVenta</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">NumeroDeVentas</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">Importe</span><span class="p">)</span><span class="w"> </span><span class="n">ImporteTotalVentas</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Ventas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">a</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Productos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">IdProducto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">IdProducto</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">Producto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;TV&#39;</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">Producto</span>
+</code></pre></div>
 
 <p>La consulta anterior filtra nuestros resultados mostrandonos las ventas y el importe total solo para el producto TV.</p>
-
-
         </div>
-    
+    </article>
+
+    <section id="quiz-section" class="quiz-section" data-module-key="aggregating" data-next-url="" data-next-title="">
+        <h2>Quiz del módulo</h2>
+        <script type="application/json" id="quiz-data">[{"question": "¿Qué función devuelve el número de filas?", "options": ["SUM()", "COUNT()", "TOTAL()", "NUM()"], "correct": 1}, {"question": "¿Qué función calcula la media de los valores de una columna?", "options": ["SUM()", "AVG()", "MEDIAN()", "MEAN()"], "correct": 1}, {"question": "¿Qué cláusula se usa para filtrar resultados en función de una agregación (ej. COUNT > 10)?", "options": ["WHERE", "HAVING", "FILTER", "GROUP WHERE"], "correct": 1}, {"question": "Los campos que aparecen en SELECT con funciones de agregación deben estar también en:", "options": ["WHERE", "ORDER BY", "GROUP BY", "HAVING"], "correct": 2}]</script>
+        <script type="application/json" id="quiz-title">"Agregación (GROUP BY)"</script>
+        <div id="quiz-container"></div>
     </section>
 
-    
-  <div class="next-post">
-    <p>Fin del curso SQL Basico. Esperamos que hayas aprendido y puedas utilizar este lenguaje de consulta de bases de datos en tu trabajo o proyectos personales. Hay muchas cosas mas que puedes aprender, no dudes en seguirnos en nuestra pagina de Linkedin para estar actualizado con las ultimas novedades. Un saludo, y hasta luego. </p>
-  </div>
-
-
-
-                <!--<p>No hay ejercicios disponibles para esta lección.</p>-->
-            </section>
-        
-
 </div>
+        </main>
 
-<!---
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.2.1/dist/sql-wasm-debug.js" crossorigin="anonymous"></script>
-<script src="/assets/js/sql.js"></script>   
-<script src="/assets/js/editor.js"></script>   
--->
-
-    </main>
-          <!--<footer class="footer">-->
-    <footer class="">
-        <!--
-    <div class="footer-container">
-      <div class="footer-about">
-        <h2>AprenderSQL</h2>
-        <p>Tu recurso en español para aprender SQL desde cero. Domina el lenguaje de bases de datos.</p>
-      </div>
-  
-      <div class="footer-links">
-        <h3>Enlaces Útiles</h3>
-        <ul>
-          <li><a href="/curso-sql">Curso SQL</a></li>
-          <li><a href="/referencia-sql">Manual de Referencia</a></li>
-          <li><a href="/comunidad">Comunidad</a></li>
-        </ul>
-      </div>
-  
-      <div class="footer-social">
-        <h3>Síguenos</h3>
-        <ul>
-          <li><a href="https://linkedin.com/company/aprendersql" target="_blank">LinkedIn</a></li>
-        </ul>
-      </div>
+        <footer class="site-footer">
+            <p>© 2025 Aprender SQL. Aprende SQL de forma interactiva. <a href="/privacidad/">Política de privacidad</a></p>
+        </footer>
     </div>
--->      
-    <div class="footer-bottom">
-      <p>© 2024 AprenderSQL. Todos los derechos reservados. | <a href="/privacidad/">Política de Privacidad</a></p>
-    </div>
-  </footer>
-    
-<!-- 100% privacy-first analytics -->
+    <script src="/theme/js/contenido.js?v=2"></script>
+    <script src="/theme/js/script.js"></script>
+    <!-- 100% privacy-first analytics -->
 <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+
 
 </body>
 </html>
