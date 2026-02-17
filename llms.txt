@@ -1,0 +1,21 @@
+# Aprender SQL
+
+> Curso de SQL gratis en español
+
+Este sitio ofrece un curso gratuito de SQL en español: lecciones paso a paso, quizzes por módulo y contenido sobre SELECT, WHERE, ORDER BY, JOIN y GROUP BY.
+
+## Módulos del curso
+
+- [Bienvenida y motivacion del curso](/curso-sql/bienvenida.html): Bienvenida y motivacion del curso.
+- [Introducción a SQL](/curso-sql/introduccion-sql.html): Qué es SQL y conceptos de bases de datos.
+- [Que es una base de datos?](/curso-sql/que-es-una-base-de-datos.html): Que es y tipos de base de datos.
+- [Modelo Entidad-Relacion](/curso-sql/modelo-entidad-relacion.html): Aprende que es el modelo entidad-relacion de bases de datos.
+- [Consultas (SELECT)](/curso-sql/consultas-select.html): Consultas básicas y recuperación de datos.
+- [Filtros (WHERE)](/curso-sql/filtrar-datos-where.html): Cláusula WHERE y filtrado avanzado.
+- [Ordenación (ORDER BY)](/curso-sql/ordenar-datos-order-by.html): Ordena datos con la cláusula ORDER BY.
+- [Unión de tablas (JOIN)](/curso-sql/tipos-join-sql.html): Combinar datos de varias tablas.
+- [Agregación (GROUP BY)](/curso-sql/agregaciones-agrupaciones-group-by.html): GROUP BY y funciones de agregación.
+
+## Páginas
+
+- [Política de privacidad](/privacidad/)

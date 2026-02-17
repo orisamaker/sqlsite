@@ -1,192 +1,114 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%40400%3B500%3B700%3B900&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" as="style" onload="this.rel='stylesheet'">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leccion 2 - Que es una base de datos? | aprendersql.com</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="stylesheet" href="/assets/css/lessons.css">
-    
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Título dinámico -->
+    <title>Que es una base de datos? | Aprender SQL</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/styles.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" />
 
-<!-- Meta Description -->
-<meta name="description" content="Explora el concepto de base de datos y su importancia en el manejo de información.">
-
-<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
-<link rel="canonical" href="https://aprendersql.com/curso-sql/que-es-una-base-de-datos.html">
-<link rel="image_src" href="/assets/img/aprendersql.png">
-
-<!-- Open Graph Meta Tags -->
-<meta property="og:title" content="Leccion 2 - Que es una base de datos?">
-<meta property="og:description" content="Explora el concepto de base de datos y su importancia en el manejo de información.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://aprendersql.com/curso-sql/que-es-una-base-de-datos">
-<meta property="og:image" content="https://aprendersql.com/assets/img/aprendersql.png">
-
-<!-- Twitter Card Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Leccion 2 - Que es una base de datos?">
-<meta name="twitter:description" content="Explora el concepto de base de datos y su importancia en el manejo de información.">
-<meta name="twitter:image" content="https://aprendersql.com/assets/img/aprendersql.png">
-
-
-  
-
-  </head>
+<link rel="canonical" href="/curso-sql/que-es-una-base-de-datos.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Que es una base de datos?", "description": "Que es y tipos de base de datos.", "author": {"@type": "Person", "name": "Adrian Rodriguez"}, "datePublished": "2025-01-01T11:00:00+01:00", "dateModified": "2025-01-01T11:00:00+01:00", "mainEntityOfPage": {"@type": "WebPage", "@id": "/curso-sql/que-es-una-base-de-datos.html"}}</script>
+</head>
 <body>
-    <header class="header">
-    <div class="logo">
-        <a href="/" class="logo-container">
-            <img src="/assets/img/logoazul.png" alt="Logo" class="logo-icon">
-            <p class="logo-text">AprenderSQL<span>.com</span></p>
-        </a>
-    </div>
-    <p class="description">
-        <strong><span class="learn-consulta-example">Aprende SQL</span>:</strong> aprendersql.com es un curso guiado gratuito de SQL. Este <strong>curso de sql</strong> para principiantes esta pensado para que aprendas este lenguaje de consulta de bases de datos <strong>desde cero</strong> paso a paso y con <strong>ejemplos</strong>. Tambien puedes consultar nuestro <strong>manual de referencia</strong>.
-    </p>
-   
-    
-       
-</header>
+    <div class="page-wrap">
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a href="/" class="site-logo" aria-label="Inicio">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                        <path d="M21 5c0 1.66-4 3-9 3S3 6.66 3 5"/>
+                    </svg>
+                </a>
+                <span class="site-title">aprendersql.com</span>
+            </div>
+            <nav class="site-nav">
+                <a href="/#modules">Módulos</a>
+            </nav>
+            <button class="menu-btn" id="menuButton" aria-label="Menú">
+                <span class="material-icons">menu</span>
+            </button>
+        </header>
 
+        <main class="site-main">
+<div class="layout-content-container">
+    <nav class="breadcrumb">
+        <a href="/">← Volver al curso</a>
+        <span class="breadcrumb-sep">|</span>
+        <a href="/curso-sql/modelo-entidad-relacion.html" class="breadcrumb-next">Siguiente módulo: Modelo Entidad-Relacion →</a>
+    </nav>
 
-    <main>
-        <script>
-    const exercises = [
-
-];
-</script>
-<div class="exercise-container">
-    <a href="/curso-sql/">← Lecciones</a>
-    <section class="lesson">
-        <h1>Leccion 2 - Que es una base de datos?</h1>
-        
-
-<p>Tiempo estimado de lectura: 4 minutos</p>
-        <div class="lesson-content">
-            <h2 id="que-es-una-base-de-datos">Que es una base de datos?</h2>
-
-<p>Una base de datos es un sistema desarrollado mediante software, que permite el almacenamiento, manipulacion y recuperacion de datos.</p>
-
-<h2 id="tipo-de-bases-de-datos">Tipo de bases de datos</h2>
-
+    <article class="article-card">
+        <header>
+            <h1>Que es una base de datos?</h1>
+            <div class="article-meta">
+                <time datetime="2025-01-01T11:00:00+01:00">Wed 01 January 2025</time>
+                <span class="article-author-link">Adrian Rodriguez</span>
+            </div>
+        </header>
+        <div class="article-content">
+            <p>Una base de datos es un sistema desarrollado mediante software, que permite el almacenamiento, manipulacion y recuperacion de datos.</p>
+<h2>Tipo de bases de datos</h2>
 <p>Hay que diferenciar entre bases de datos SQL y bases de datos NoSQL. Este curso trata sobre las bases de datos SQL.</p>
-
-<h3 id="bases-de-datos-sql">Bases de datos SQL</h3>
-
+<h3>Bases de datos SQL</h3>
 <p>Son aquellas en el que la informacion es estructurada, esto es, en formato de tablas con columnas y filas. Un ejemplo claro de tabla puede ser una hoja de calculo de excel. Una base de datos SQL, tambien denominada comunmente como base de datos relacional, debe su nombre a la posibilidad de relacionar las diferentes tablas que la componen.</p>
-
-<p><img src="/assets/img/curso/ejemplo-bbdd-relacional.jpg" alt="ejemplo bbdd relacional" title="Ejemplo bbdd relacional" /></p>
-
-<h3 id="bases-de-datos-nosql">Bases de datos NoSQL</h3>
-
+<p><img alt="imagen bbdd relacional" src="/images/ejemplo-bbdd-relacional.jpg"></p>
+<h3>Bases de datos NoSQL</h3>
 <p>Las bases de datos NoSQL se componen de informacion que no sigue un patron de columnas y filas concretos, por ejemplo, podria ser un sistema de un conjunto de archivos tipo clave-valor. El tipico ejemplo de sistema de base de datos NoSQL es MongoDB. La forma comun de almacenar la informacion en una base de datos NoSQL es mediante archivos tipo Json.</p>
-
-<p><img src="/assets/img/curso/ejemplo-documento-nosql.jpg" alt="ejemplo documento NoSQL" title="Ejemplo documento NoSQL" /></p>
-
-<h2 id="tablas">Tablas</h2>
-
+<p><img alt="ejemplo documento NoSQL" src="/images/ejemplo-documento-NoSQL.jpg"></p>
+<h3>Tablas</h3>
 <p>Una tabla en una base de datos se suele componen de filas y columnas (tambien llamadas campos) igual que podriamos tener en las hojas de calculo. Cada tabla en una base de datos representa una entidad, como pueden ser clientes, productos o ventas.</p>
-
-<p><img src="/assets/img/curso/ejemplo-esquema-tabla.jpg" alt="ejemplo esquema tabla" title="Ejemplo esquema tabla" /></p>
-
-<h3 id="columnas">Columnas</h3>
-
+<p><img alt="ejemplo esquema tabla" src="/images/ejemplo-esquema-tabla.jpg"></p>
+<h3>Columnas</h3>
 <p>Una columna en una tabla de base de datos contiene la informacion de un atributo de la entidad que representa la tabla. Una columna tiene asociado un tipo de datos, como puede ser entero, decimal, cadena, binario o de tipo fecha. Por ejemplo una tabla en una base de datos que representa la entidad Empleados puede tener campos tales como Nombre, Fecha de incorporacion, Direccion, Departamento, Responsable, Salario, etc.</p>
-
-<h3 id="filas">Filas</h3>
-
+<h3>Filas</h3>
 <p>Las filas de una tabla de base de datos, tambien llamados comunmente registros, representan un evento o instanscias especificas de una entidad. Por ejemplo en una tabla una fila puede representar un cliente con las siguientes columnas Nombre, Direccion, Identificador de cliente, Email, etc.</p>
-
-<h2 id="tipos-de-relaciones-entre-tablas">Tipos de relaciones entre tablas</h2>
-
+<h2>Tipos de relaciones entre tablas</h2>
 <p>Las relaciones en una base de datos son las conexiones entre las diferentes tablas que pueden componer la base de datos. Las relaciones nos permiten referir y combinar los datos entre las tablas. La relacion entre tablas tambien se denomina cardinalidad.</p>
-
 <p>Las relaciones entre tablas nos permiten organizar la informacion de manera coherente.</p>
-
 <p>Existen 3 tipos principales de relaciones entre tablas:</p>
-
 <ul>
-  <li>
-    <p><strong>Uno a uno</strong> (1:1): Una relacion uno a uno entre dos tablas significa que cada fila o registro de la primera tabla se relaciona con un unico registro de la segunda tabla. Esto es, por ejemplo, una tabla Empleados donde podemos tener el nombre del empleados y los apellidos en dos columnas, se puede relacionar con otro tabla llamada direcciones donde cada empleado tendria una sola direccion en la segunda tabla direcciones, en el caso de que cada empleado solo tenga una direccion. Este tipo de relacion en una diagrama entidad relacion se representa por 1:1.</p>
-  </li>
-  <li>
-    <p><strong>Uno a muchos</strong> (1:n): Este tipo de relacion se da cuando un registro de una tabla puede estar relacionado con uno o mas registros de otra tabla, por ejemplo, cada registro de una tabla llamada clientes puede relacionarse con otra tabla llamada pedidos donde cada cliente puede tener uno o mas pedidos.</p>
-  </li>
-  <li>
-    <p><strong>Muchos a muchos</strong> (n:n): Este tipo de relacion se da cuando una tabla que contiene diferentes registros que relaciona tambien con diferentes registros de otra tabla. Por ejemplo, una tabla llamada estudiantes puede relacionar de manera muchos a muchos con otra tabla llamada asignaturas.</p>
-  </li>
+<li>
+<p>Uno a uno (1:1): Una relacion uno a uno entre dos tablas significa que cada fila o registro de la primera tabla se relaciona con un unico registro de la segunda tabla. Esto es, por ejemplo, una tabla Empleados donde podemos tener el nombre del empleados y los apellidos en dos columnas, se puede relacionar con otro tabla llamada direcciones donde cada empleado tendria una sola direccion en la segunda tabla direcciones, en el caso de que cada empleado solo tenga una direccion. Este tipo de relacion en una diagrama entidad relacion se representa por 1:1.</p>
+</li>
+<li>
+<p>Uno a muchos (1:n): Este tipo de relacion se da cuando un registro de una tabla puede estar relacionado con uno o mas registros de otra tabla, por ejemplo, cada registro de una tabla llamada clientes puede relacionarse con otra tabla llamada pedidos donde cada cliente puede tener uno o mas pedidos.</p>
+</li>
+<li>
+<p>Muchos a muchos (n:n): Este tipo de relacion se da cuando una tabla que contiene diferentes registros que relaciona tambien con diferentes registros de otra tabla. Por ejemplo, una tabla llamada estudiantes puede relacionar de manera muchos a muchos con otra tabla llamada asignaturas.</p>
+</li>
 </ul>
-
-<h2 id="primary-keys-y-foreign-keys">Primary Keys y Foreign Keys</h2>
+<h2>Primary Keys y Foreign Keys</h2>
 <p>Igual que hemos hablado de los tipos de relaciones entre tablas de una base de datos, debemos mencionar tambien lo que se denominan Primary keys y Foreign Keys. Estas son claves en una tabla, que nos permitiran tambien poder conocer como relacionar las tablas entre si.</p>
-
-<h3 id="que-es-una-primary-key">Que es una Primary Key?</h3>
-
+<h3>Que es una Primary Key?</h3>
 <p>Una Primary Key (PK), o clave primaria, es una columna donde cada valor de los diferentes registros de las filas es unico para esa columna. Por ejemplo una tabla de clientes con una columna IdCliente puede ser el identificador de cada cliente dentro de la tabla. Una tabla por norma suele tener solo una primary key, si bien puede haber primary keys compuestas de varios atributos dados por otras columnas de la tabla.</p>
-
-<h3 id="que-es-una-foreign-key">Que es una Foreign Key?</h3>
-
+<h3>Que es una Foreign Key?</h3>
 <p>Una Foreign Key (FK), o clave foranea, es una clave externa hacia otra tabla. Por ejemplo, la misma tabla clientes que mencionamos arriba puede contener una clave foranea hacia otra tabla, en este caso podriamos imaginar que esta columna que apunta a otra tabla se trata del tipo de cliente, esta columna puede contener 3 posibles valores, Empresa pequeña, Empresa Mediana y Empresa Grande, donde los clientes de la tabla seran de estos 3 tipos, y por contra tendremos la otra tabla que puede ser TipoDeCliente donde encontraremos la columna Tipo de Cliente con los 3 registros para cada valor de este atributo, esto es, un registro para Empresa Pequeña, otro registro para Empresa Mediana y un tercer registro para Empresa Grande. Para el ejemplo que estamos hablando la relacion entre las tablas TipoDeCliente y Cliente la relacion seria de 1 a muchos (1:n), dado que en la primera tabla tendremos un registro unico para cada tipo de cliente, mientras que en la tabla Clientes podemos tener muchos clientes pero cada uno pudiendo ser Empresa Pequeña, Empresa Mediana o Empresa Grande.</p>
-
         </div>
-    
+    </article>
+
+    <section id="quiz-section" class="quiz-section" data-module-key="intro" data-next-url="/curso-sql/modelo-entidad-relacion.html" data-next-title="Modelo Entidad-Relacion">
+        <h2>Quiz del módulo</h2>
+        <script type="application/json" id="quiz-data">[{"question": "¿Qué permite una base de datos?", "options": ["Solo almacenar datos", "Almacenamiento, manipulación y recuperación de datos", "Solo consultar datos", "Solo borrar datos"], "correct": 1}, {"question": "Las bases de datos SQL tienen la información estructurada en:", "options": ["Documentos JSON", "Tablas con columnas y filas", "Archivos clave-valor", "Solo texto"], "correct": 1}, {"question": "¿Qué es una Primary Key (clave primaria)?", "options": ["Una clave que apunta a otra tabla", "Una columna donde cada valor es único en la tabla", "Un tipo de relación entre tablas", "Un índice opcional"], "correct": 1}, {"question": "La relación 'uno a muchos' (1:n) significa que:", "options": ["Cada registro de una tabla se relaciona con un único registro de otra", "Un registro de una tabla puede relacionarse con uno o más de otra tabla", "Muchas tablas se fusionan en una", "Solo puede haber una relación entre tablas"], "correct": 1}, {"question": "¿Qué es una Foreign Key (clave foránea)?", "options": ["La clave principal de la tabla", "Una clave que apunta o referencia a otra tabla", "Un tipo de dato de columna", "La primera columna de la tabla"], "correct": 1}]</script>
+        <script type="application/json" id="quiz-title">"Qué es una base de datos"</script>
+        <div id="quiz-container"></div>
     </section>
 
-    
-  <div class="next-post">
-    <p>Siguiente lección: <a href="/curso-sql/modelo-entidad-relacion">Leccion 3 - Modelo Entidad-Relacion</a></p>
-  </div>
-
-
-
-                <!--<p>No hay ejercicios disponibles para esta lección.</p>-->
-            </section>
-        
-
+    <nav class="article-nav-bottom">
+        <a href="/curso-sql/modelo-entidad-relacion.html" class="link-next-module">Siguiente módulo: Modelo Entidad-Relacion →</a>
+    </nav>
 </div>
+        </main>
 
-<!---
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.2.1/dist/sql-wasm-debug.js" crossorigin="anonymous"></script>
-<script src="/assets/js/sql.js"></script>   
-<script src="/assets/js/editor.js"></script>   
--->
-
-    </main>
-          <!--<footer class="footer">-->
-    <footer class="">
-        <!--
-    <div class="footer-container">
-      <div class="footer-about">
-        <h2>AprenderSQL</h2>
-        <p>Tu recurso en español para aprender SQL desde cero. Domina el lenguaje de bases de datos.</p>
-      </div>
-  
-      <div class="footer-links">
-        <h3>Enlaces Útiles</h3>
-        <ul>
-          <li><a href="/curso-sql">Curso SQL</a></li>
-          <li><a href="/referencia-sql">Manual de Referencia</a></li>
-          <li><a href="/comunidad">Comunidad</a></li>
-        </ul>
-      </div>
-  
-      <div class="footer-social">
-        <h3>Síguenos</h3>
-        <ul>
-          <li><a href="https://linkedin.com/company/aprendersql" target="_blank">LinkedIn</a></li>
-        </ul>
-      </div>
+        <footer class="site-footer">
+            <p>© 2025 Aprender SQL. Aprende SQL de forma interactiva. <a href="/privacidad/">Política de privacidad</a></p>
+        </footer>
     </div>
--->      
-    <div class="footer-bottom">
-      <p>© 2024 AprenderSQL. Todos los derechos reservados. | <a href="/privacidad/">Política de Privacidad</a></p>
-    </div>
-  </footer>
-
-    <!-- 100% privacy-first analytics -->
-<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-
+    <script src="/theme/js/contenido.js?v=2"></script>
+    <script src="/theme/js/script.js"></script>
 </body>
 </html>
