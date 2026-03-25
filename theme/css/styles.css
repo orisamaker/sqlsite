@@ -1174,8 +1174,8 @@ button {
   display: inline-block;
   margin-top: 10px;
   padding: 10px 15px;
-  background: #0073e6;
-  color: white;
+  background: var(--color-hero-btn);
+  color: black;
   text-decoration: none;
   border-radius: 5px;
 }
