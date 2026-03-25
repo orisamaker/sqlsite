@@ -178,6 +178,17 @@
 </tr>
 </tbody>
 </table>
+
+            <div class="cta-libro">
+  <h3>¿Quieres practicar SQL de verdad?</h3>
+  <p>
+    Estoy creando un libro de ejercicios con retos prácticos y soluciones paso a paso.
+  </p>
+  <a href="/libro-ejercicios" class="cta-btn" data-sa-link-event="cta_libro_ejercicios">
+    Ver libro de ejercicios
+  </a>
+</div>
+
         </div>
     </article>
     <nav class="article-nav-bottom">
@@ -205,6 +216,42 @@
     <script src="/theme/js/script.js"></script>
     <!-- 100% privacy-first analytics -->
 <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+      <script>
+  (function () {
+    function saLoadedLinkEvents() {
+      document
+        .querySelectorAll("a[data-sa-link-event]")
+        .forEach(function (element) {
+          var href = element.getAttribute("href");
+          var eventName = element.getAttribute("data-sa-link-event");
+          if (!href || !window.sa_event || !window.sa_loaded) return;
+
+          element.addEventListener("click", function (event) {
+            var target = element.getAttribute("target");
+            if (target === "_blank") {
+              event.preventDefault();
+              window.sa_event(eventName, function () {
+                window.location.href = href;
+              });
+              return false;
+            } else {
+              window.sa_event(eventName);
+              return true;
+            }
+          });
+        });
+    }
+
+    if (document.readyState === "ready" || document.readyState === "complete") {
+      saLoadedLinkEvents();
+    } else {
+      document.addEventListener("readystatechange", function (event) {
+        if (event.target.readyState === "complete") saLoadedLinkEvents();
+      });
+    }
+  })();
+</script>
+
 
 
 </body>
