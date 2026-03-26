@@ -95,9 +95,9 @@
         No te quedes solo en la teoria, estoy creando un libro de ejercicios con retos prácticos y soluciones paso a paso.
 
   </p>
-  <a href="" class="cta-btn" data-sa-link-event="cta_libro_orderby" target="_blank">
+  <button href="" class="cta-btn" data-sa-link-event="cta_libro_orderby" >
     Ver libro de ejercicios
-  </a>
+  </button>
 </div>
         </div>
     </article>
@@ -130,7 +130,7 @@
   (function () {
     function saLoadedLinkEvents() {
       document
-        .querySelectorAll("a[data-sa-link-event]")
+        .querySelectorAll("button[data-sa-link-event]")
         .forEach(function (element) {
           var href = element.getAttribute("href");
           var eventName = element.getAttribute("data-sa-link-event");
