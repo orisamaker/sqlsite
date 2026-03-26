@@ -8,7 +8,6 @@
     <title>Bienvenida y motivacion del curso | Aprender SQL</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/theme/css/styles.css">
-<link rel="canonical" href="/curso-sql/bienvenida.html"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Bienvenida y motivacion del curso", "description": "Bienvenida y motivacion del curso.", "author": {"@type": "Person", "name": "Adrian Rodriguez"}, "datePublished": "2025-01-01T10:00:00+01:00", "dateModified": "2025-01-01T10:00:00+01:00", "mainEntityOfPage": {"@type": "WebPage", "@id": "/curso-sql/bienvenida.html"}}</script>
 </head>
 <body>
     <div class="page-wrap">
@@ -53,7 +52,7 @@
 <p>Es un recurso que estoy desarrollando y que me hace mucha ilusion que puedas hacerte con el.</p>
 <p>La idea es que puedas practicar con toda una serie de ejercicios que hagan que ganes en confianza y seguridad a la hora de usar SQL y te pueda servir para afrontar tu dia a dia en el campo de la tecnologia y los datos.</p>
 <br>
-<p>Si quieres puedes estar al tanto de la evolucion de este libro de ejercicios a traves de mi <a href="https://linkedin.com/in/adrianrodriz" target="_blank">perfil de linkedin</a> </p>
+<p>Si quieres puedes estar al tanto de la evolucion de este libro de ejercicios a traves de mi <a href="https://linkedin.com/in/adrianrodriz" target="_blank" data-sa-link-event="link_libro_linkedin">perfil de linkedin</a>. Tambien si quieres me puedes conectar y escribirme para contarme que esperas de un recurso asi. </p>
 
 <br>
 
@@ -70,5 +69,42 @@
     </div>
     <script src="/theme/js/contenido.js?v=2"></script>
     <script src="/theme/js/script.js"></script>
+    <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <script>
+  (function () {
+    function saLoadedLinkEvents() {
+      document
+        .querySelectorAll("a[data-sa-link-event]")
+        .forEach(function (element) {
+          var href = element.getAttribute("href");
+          var eventName = element.getAttribute("data-sa-link-event");
+          if (!href || !window.sa_event || !window.sa_loaded) return;
+
+          element.addEventListener("click", function (event) {
+            var target = element.getAttribute("target");
+            if (target === "_blank") {
+              event.preventDefault();
+              window.sa_event(eventName, function () {
+                window.location.href = href;
+              });
+              return false;
+            } else {
+              window.sa_event(eventName);
+              return true;
+            }
+          });
+        });
+    }
+
+    if (document.readyState === "ready" || document.readyState === "complete") {
+      saLoadedLinkEvents();
+    } else {
+      document.addEventListener("readystatechange", function (event) {
+        if (event.target.readyState === "complete") saLoadedLinkEvents();
+      });
+    }
+  })();
+</script>
+
 </body>
 </html>
